@@ -1,0 +1,4 @@
+[context.deploy-preview]
+	command = "yarn run build-web"
+[build]
+  base    = "web"

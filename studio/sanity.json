@@ -7,6 +7,18 @@
     "projectId": "wr760sjc",
     "dataset": "production"
   },
+  "env": {
+    "development": {
+      "api": {
+        "dataset": "development"
+      }
+    },
+    "production": {
+      "api": {
+        "dataset": "production"
+      }
+    }
+  },
   "plugins": [
     "@sanity/base",
     "@sanity/components",

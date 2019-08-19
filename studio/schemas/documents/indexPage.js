@@ -1,0 +1,42 @@
+export default {
+  name: 'indexPage',
+  type: 'document',
+  title: 'Homepage',
+  __experimental_actions: [/* 'create', */ 'update' /* 'delete', */, 'publish'],
+  fields: [
+    {
+      type: 'array',
+      name: 'bgImages',
+      title: 'Homepage Background Images',
+      of: [{type: 'figure'}],
+      options: {
+        layout: 'grid'
+      }
+    },
+    {
+      name: 'headlineText',
+      title: 'Headline Text',
+      type: 'text',
+      rows: 2
+    },
+    {
+      name: 'subhead',
+      title: 'Sub-Headline Text',
+      type: 'bioPortableText'
+    }
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'heroImage',
+      subtitle: '/'
+    },
+    prepare ({title = 'No title', media, subtitle = '/'}) {
+      return {
+        title,
+        media,
+        subtitle
+      }
+    }
+  }
+}

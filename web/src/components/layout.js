@@ -1,24 +1,34 @@
-import React from 'react'
-import Header from './header'
+import React from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import { Header } from 'components';
 
-import '../styles/layout.css'
-import styles from './layout.module.css'
+const GlobalStyle = createGlobalStyle`
+ &  body {
+    background: #010203;
+  }
 
-const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle}) => (
+  & a {
+    color: #0e0fed;
+    text-decoration: underline;
+    text-decoration-skip: ink;
+
+    &:hover {
+      color: #000000;
+    }
+  }
+`;
+
+const LayoutWrapper = styled.div`
+  max-width: 100vw;
+  overflow-x: hidden;
+`;
+
+const Layout = ({ children, companyInfo, onHideNav, onShowNav, showNav, siteTitle }) => (
   <>
+    <GlobalStyle />
     <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
-    <div className={styles.content}>{children}</div>
-    <footer className={styles.footer}>
-      <div className={styles.footerWrapper}>
-        <div className={styles.siteInfo}>
-          &copy; {new Date().getFullYear()}, Built with <a href='https://www.sanity.io'>Sanity</a>{' '}
-          &amp;
-          {` `}
-          <a href='https://www.gatsbyjs.org'>Gatsby</a>
-        </div>
-      </div>
-    </footer>
+    <LayoutWrapper>{children}</LayoutWrapper>
   </>
-)
+);
 
-export default Layout
+export default Layout;

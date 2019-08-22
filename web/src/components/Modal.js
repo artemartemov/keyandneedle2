@@ -83,7 +83,7 @@ const Modal = ({
   onKeyDown,
 }) => {
   const closeIconWrapper = showCloseIcon ? (
-    <IconContainer onClick={onClose}>
+    <IconContainer onClick={onClose} data-test="close-modal">
       <X color={colors.beige.light} size={32} />
     </IconContainer>
   ) : (

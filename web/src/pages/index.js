@@ -194,6 +194,7 @@ const IndexPage = ({ data, errors }) => {
           <Iframe
             url="https://airtable.com/embed/shrYt1GdXzl42pHsc?backgroundColor=yellow"
             onLoad={() => toggleLoader(false)}
+            id="booking-embed"
           />
         </Modal>
       </Transition>

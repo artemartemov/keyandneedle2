@@ -189,7 +189,7 @@ const IndexPage = ({ data, errors }) => {
         >
           {isLoading && (
             <LoadingWrapper>
-              <Loader delay={0} size="4rem" color={colors.beige.light} />
+              <Loader delay={0} size="4rem" color={colors.beige.base} />
             </LoadingWrapper>
           )}
           <Iframe

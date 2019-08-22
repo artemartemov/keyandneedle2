@@ -142,7 +142,7 @@ const IndexPage = ({ data, errors }) => {
       {
         xPercent: -100,
         // eslint-disable-next-line
-      ease: Power0.easeInOut
+        ease: Power0.easeInOut
       },
       {
         xPercent: 0,

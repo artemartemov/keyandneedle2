@@ -16,9 +16,6 @@
       "pre-commit": "lint-staged"
     }
   },
-  "lint-staged": {
-    "*.js": ["eslint --fix", "git add"]
-  },
   "devDependencies": {
     "@sanity/block-content-to-react": "^2.0.6",
     "@sanity/image-url": "^0.140.12",

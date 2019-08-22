@@ -8,12 +8,21 @@
     "clean-cache": "gatsby clean",
     "dev": "yarn run clean-cache && gatsby develop",
     "lint": "eslint .",
-    "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
-    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+    "format": "prettier-eslint --write \"**/*.+(js|jsx|md|json)\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
+    "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": ["eslint --fix", "git add"]
   },
   "devDependencies": {
     "@sanity/block-content-to-react": "^2.0.6",
     "@sanity/image-url": "^0.140.12",
+    "@testing-library/react": "^9.1.3",
     "date-fns": "^1.30.1",
     "dotenv": "^8.0.0",
     "eslint": "6.1.0",
@@ -34,6 +43,9 @@
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-styled-components": "^3.1.2",
     "gatsby-source-sanity": "^4.0.3",
+    "husky": "^3.0.4",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.2.3",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.6.0",
     "prettier": "^1.18.2",

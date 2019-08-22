@@ -48,7 +48,11 @@
     "gatsby-plugin-sharp": "^2.2.12",
     "gatsby-plugin-typography": "^2.3.2",
     "gatsby-transformer-sharp": "^2.2.6",
+    "gsap": "^2.1.3",
+    "object-assign": "^4.1.1",
+    "react-feather": "^2.0.3",
     "react-spring": "^8.0.27",
+    "react-transition-group": "^4.2.2",
     "react-typography": "^0.16.19",
     "styled-components": "^4.3.2",
     "typography": "^0.16.19"

@@ -26,7 +26,7 @@ const LayoutWrapper = styled.div`
 const Layout = ({ children, companyInfo, onHideNav, onShowNav, showNav, siteTitle }) => (
   <>
     <GlobalStyle />
-    <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
+    <Header />
     <LayoutWrapper>{children}</LayoutWrapper>
   </>
 );

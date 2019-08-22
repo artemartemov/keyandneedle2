@@ -8,7 +8,7 @@ const typography = new Typography({
   googleFonts: [
     {
       name: 'Open Sans',
-      styles: ['300', '600', '900'],
+      styles: ['300', '400', '600', '900'],
     },
     {
       name: 'Montserrat',

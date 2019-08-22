@@ -12,8 +12,8 @@ export { default as SEO } from './seo';
 
 export { default as PortableText } from './portableText';
 export { default as Serializers } from './serializers';
-// export { default as useKeyboardEvent } from './useKeyboardEvent';
-// export { default as Modal } from './Modal';
-// export { default as Iframe } from './iframe';
-// export { default as Loader } from './Loader';
-// export { default as VideoModal } from './videoModal';
+export { default as keyPress } from './useKeyboardEvent';
+export { default as Modal } from './Modal';
+export { default as Iframe } from './iframe';
+export { default as Loader } from './Loader';
+export { default as useToggle } from './UseToggle';

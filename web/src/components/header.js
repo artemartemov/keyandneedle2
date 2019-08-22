@@ -16,7 +16,7 @@ const Logo = styled(animated(Link))`
   left: 32px;
 `;
 
-const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
+const Header = ({}) => {
   const logoAnimations = useSpring({
     from: {
       opacity: 0,
@@ -56,13 +56,6 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => {
       </nav> */}
     </HeaderWrapper>
   );
-};
-
-Header.propTypes = {
-  onHideNav: PropTypes.any.isRequired,
-  onShowNav: PropTypes.any.isRequired,
-  showNav: PropTypes.bool.isRequired,
-  siteTitle: PropTypes.string.isRequired,
 };
 
 export default Header;

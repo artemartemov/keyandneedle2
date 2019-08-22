@@ -23,6 +23,12 @@ export default {
       name: 'subhead',
       title: 'Sub-Headline Text',
       type: 'bioPortableText'
+    },
+    {
+      name: 'buttonText',
+      title: 'Main Button Text',
+      type: 'text',
+      rows: 1
     }
   ],
   preview: {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
@@ -61,7 +61,7 @@ const requestTimeout = (fn, delay) => {
   }
 };
 
-class BgImageSlider extends Component {
+class BgImageSlider extends PureComponent {
   constructor({ imageSlides }) {
     super();
     this.state = {
@@ -105,7 +105,7 @@ class BgImageSlider extends Component {
       return (
         // Each item requires a unique key. Also we are controling the opactiy prop from
         // styled components in the first few lines of the document
-        <SlideContainer key={image.asset._id}>
+        <SlideContainer isActive={isActive} key={image.asset._id}>
           <Img fluid={image.asset.fluid} />
         </SlideContainer>
       );

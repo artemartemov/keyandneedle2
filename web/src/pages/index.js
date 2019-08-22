@@ -116,7 +116,7 @@ export const query = graphql`
   }
 `;
 
-const IndexPage = ({ data, errors, _rawSubhead, open }) => {
+const IndexPage = ({ data, errors }) => {
   if (errors) {
     return (
       <Layout>

@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 export const query = graphql`
-  query IndexPageQuery {
+  query ArtistPageQuery {
     site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
       title
       description

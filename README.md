@@ -1,4 +1,4 @@
-# Key+Needle
+# Key+Needle [![Netlify Status](https://api.netlify.com/api/v1/badges/609973c2-8e38-4d1b-b6c2-2d7938cd182b/deploy-status)](https://app.netlify.com/sites/keyandneedle2/deploys)
 
 _Fully customizable blog template with a React.js front-end._
 

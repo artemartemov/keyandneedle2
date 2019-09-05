@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import X from 'react-feather/dist/icons/x';
-import colors from '../utils/colors';
+import { colors } from 'utils';
 
 const AbsoluteCenter = css`
   position: fixed;
@@ -13,7 +13,7 @@ const AbsoluteCenter = css`
   max-height: calc(100% - 100px);
 `;
 
-const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div`
   width: ${props => props.modalWidth};
   max-width: ${props => props.maxModalWidth};
   background: ${props => props.background};
@@ -82,13 +82,10 @@ const Modal = ({
   className,
   onKeyDown,
 }) => {
-  const closeIconWrapper = showCloseIcon ? (
-    <IconContainer onClick={onClose} data-test="close-modal">
+  const closeIconWrapper = (
+    <IconContainer onClick={onClose} data-testid="modal-close">
       <X color={colors.beige.light} size={32} />
     </IconContainer>
-  ) : (
-    // hold open space for centered title
-    <IconContainer />
   );
 
   const modalMarkup = (
@@ -100,10 +97,11 @@ const Modal = ({
       background={background}
       centered={centered}
       onKeyDown={onKeyDown}
+      data-testid="modal-wrapper"
     >
       <ModalHeader>
         {isSidePanel && closeIconWrapper}
-        {isSidePanel !== true && title && <ModalTitle>{title}</ModalTitle>}
+        {isSidePanel !== true && title && <ModalTitle data-testid="modal-header">{title}</ModalTitle>}
       </ModalHeader>
       {children}
     </ModalWrapper>

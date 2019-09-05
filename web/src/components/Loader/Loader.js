@@ -62,7 +62,7 @@ class Loader extends PureComponent {
     const { size, color } = this.props;
     const { show } = this.state;
 
-    return <>{show && <Spinner size={size} color={color} />}</>;
+    return <>{show && <Spinner data-testid="spinner" size={size} color={color} />}</>;
   }
 }
 

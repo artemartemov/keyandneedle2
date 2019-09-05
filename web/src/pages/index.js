@@ -142,7 +142,7 @@ const IndexPage = ({ data, errors }) => {
       {
         xPercent: -100,
         // eslint-disable-next-line
-      ease: Power0.easeInOut
+        ease: Power0.easeInOut
       },
       {
         xPercent: 0,
@@ -194,6 +194,7 @@ const IndexPage = ({ data, errors }) => {
           <Iframe
             url="https://airtable.com/embed/shrYt1GdXzl42pHsc?backgroundColor=yellow"
             onLoad={() => toggleLoader(false)}
+            id="booking-embed"
           />
         </Modal>
       </Transition>

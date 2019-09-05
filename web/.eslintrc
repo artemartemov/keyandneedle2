@@ -1,5 +1,6 @@
 {
-	"extends": ["airbnb", "prettier", "prettier/react"],
+	"extends": ["airbnb", "prettier", "prettier/react", "plugin:jest/recommended"],
+	"plugins": ["prettier", "jest"],
 	"parser": "babel-eslint",
 	"parserOptions": {
 	  "ecmaVersion": 2017,
@@ -28,7 +29,7 @@
 	  "no-unused-vars": [
 		1,
 		{
-		  "argsIgnorePattern": "res|next|^err"
+		  "argsIgnorePattern": "res|next|^err|^_"
 		}
 	  ],
 	  "arrow-body-style": [2, "as-needed"],
@@ -93,6 +94,5 @@
 		  "aspects": ["invalidHref"]
 		}
 	  ]
-	},
-	"plugins": ["prettier"]
+	}
   }

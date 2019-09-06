@@ -47,10 +47,11 @@ const typography = new Typography({
   ],
 });
 
+export const { scale, rhythm } = typography;
+
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== 'production') {
   typography.injectStyles();
 }
 
 export default typography;
-export const { rhythm, scale } = typography;

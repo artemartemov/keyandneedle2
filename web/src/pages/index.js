@@ -39,7 +39,7 @@ const MainTextWrapper = styled.div`
   }
 
   & p {
-    ${scale(-0.05)}
+    /* ${scale(-0.05)} */
     color: ${colors.white};
   }
 `;
@@ -57,7 +57,7 @@ const ModalWrapper = styled.span`
 `;
 
 const MainButton = styled.button`
-  ${scale(-0.15)}
+  /* ${scale(-0.15)} */
   outline: 0;
   border: 0;
   color: ${colors.black};

@@ -75,7 +75,6 @@ const Modal = ({
   background,
   modalWidth,
   maxModalWidth,
-  showCloseIcon,
   onClose,
   title,
   children,

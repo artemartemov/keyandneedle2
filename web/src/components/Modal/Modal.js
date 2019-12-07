@@ -30,6 +30,16 @@ export const ModalWrapper = styled.div`
           top: 0;
         `
       : null};
+
+  ${props =>
+    props.isSidePanelRight
+      ? css`
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+        `
+      : null};
 `;
 
 const ModalHeader = styled.div`
@@ -71,6 +81,7 @@ const IconContainer = styled.div`
 
 const Modal = ({
   isSidePanel,
+  isSidePanelRight,
   centered,
   background,
   modalWidth,
@@ -90,6 +101,7 @@ const Modal = ({
   const modalMarkup = (
     <ModalWrapper
       isSidePanel={isSidePanel}
+      isSidePanelRight={isSidePanelRight}
       className={className}
       modalWidth={modalWidth}
       maxModalWidth={maxModalWidth}
@@ -100,7 +112,8 @@ const Modal = ({
     >
       <ModalHeader>
         {isSidePanel && closeIconWrapper}
-        {isSidePanel !== true && title && <ModalTitle data-testid="modal-header">{title}</ModalTitle>}
+        {isSidePanel ||
+          (isSidePanelRight !== true && title && <ModalTitle data-testid="modal-header">{title}</ModalTitle>)}
       </ModalHeader>
       {children}
     </ModalWrapper>

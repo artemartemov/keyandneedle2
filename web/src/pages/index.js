@@ -16,6 +16,7 @@ import {
   useToggle,
   Loader,
   keyPress,
+  GoogleMap,
 } from 'components';
 
 import { colors, scale } from 'utils';
@@ -112,6 +113,10 @@ export const query = graphql`
           _id
         }
       }
+      location {
+        lat
+        lng
+      }
     }
   }
 `;
@@ -129,18 +134,33 @@ const IndexPage = ({ data, errors }) => {
   const homepage = data && data.homepage;
   const imageBgNodes = homepage && homepage.bgImages;
 
-  const [openModal, toggleModal] = useToggle(false);
+  const [openBookingModal, toggleBookingModal] = useToggle(false);
+  const [openContactModal, toggleContactModal] = useToggle(false);
 
   const [isLoading, toggleLoader] = useToggle(true);
 
   const duration = 300;
 
-  const animation = (target, dur) =>
+  const bookingModalAnimation = (target, dur) =>
     TweenMax.fromTo(
       target,
       dur / 1000,
       {
         xPercent: -100,
+        // eslint-disable-next-line
+        ease: Power0.easeInOut
+      },
+      {
+        xPercent: 0,
+      }
+    );
+
+  const contactModalAnimation = (target, dur) =>
+    TweenMax.fromTo(
+      target,
+      dur / 1000,
+      {
+        xPercent: 100,
         // eslint-disable-next-line
         ease: Power0.easeInOut
       },
@@ -160,19 +180,22 @@ const IndexPage = ({ data, errors }) => {
       <MainTextWrapper>
         <h1>{homepage.headlineText}</h1>
         {homepage._rawSubhead && <PortableText blocks={homepage._rawSubhead} />}
-        <MainButton type="button" onClick={() => toggleModal()}>
+        <MainButton type="button" onClick={() => toggleBookingModal()}>
           {homepage.buttonText}
         </MainButton>
+        <button type="button" onClick={() => toggleContactModal()}>
+          Contact Modal
+        </button>
       </MainTextWrapper>
 
-      {openModal && <ModalWrapper onClick={() => toggleModal(false)} />}
+      {openBookingModal && <ModalWrapper onClick={() => toggleBookingModal(false)} />}
       <Transition
-        in={openModal}
+        in={openBookingModal}
         onEnter={node => {
-          animation(node, duration);
+          bookingModalAnimation(node, duration);
         }}
         onExit={node => {
-          animation(node, duration).reverse(0);
+          bookingModalAnimation(node, duration).reverse(0);
         }}
         unmountOnExit
         timeout={duration}
@@ -183,8 +206,8 @@ const IndexPage = ({ data, errors }) => {
           maxModalWidth="600px"
           modalWidth="66%"
           background="#ffffff"
-          onClose={() => toggleModal()}
-          onKeyDown={keyPress('Escape', toggleModal)}
+          onClose={() => toggleBookingModal()}
+          onKeyDown={keyPress('Escape', () => toggleBookingModal(false))}
         >
           {isLoading && (
             <LoadingWrapper>
@@ -195,6 +218,35 @@ const IndexPage = ({ data, errors }) => {
             url="https://airtable.com/embed/shrYt1GdXzl42pHsc?backgroundColor=yellow"
             onLoad={() => toggleLoader(false)}
             id="booking-embed"
+          />
+        </Modal>
+      </Transition>
+
+      {openContactModal && <ModalWrapper onClick={() => toggleContactModal(false)} />}
+      <Transition
+        in={openContactModal}
+        onEnter={node => {
+          contactModalAnimation(node, duration);
+        }}
+        onExit={node => {
+          contactModalAnimation(node, duration).reverse(0);
+        }}
+        unmountOnExit
+        timeout={duration}
+      >
+        <Modal
+          title="Contact Modal"
+          isSidePanelRight
+          maxModalWidth="600px"
+          modalWidth="66%"
+          background={colors.beige.light}
+          onClose={() => toggleContactModal()}
+          onKeyDown={keyPress('Escape', () => toggleContactModal(false))}
+        >
+          <GoogleMap
+            center={[homepage.location.lat, homepage.location.lng]}
+            lat={homepage.location.lat}
+            lng={homepage.location.lng}
           />
         </Modal>
       </Transition>

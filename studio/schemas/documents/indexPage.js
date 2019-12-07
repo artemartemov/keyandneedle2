@@ -29,6 +29,11 @@ export default {
       title: 'Main Button Text',
       type: 'text',
       rows: 1
+    },
+    {
+      title: 'Studio Location',
+      name: 'location',
+      type: 'geopoint'
     }
   ],
   preview: {

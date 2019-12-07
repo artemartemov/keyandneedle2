@@ -17,3 +17,5 @@ export { default as Modal } from './Modal/Modal';
 export { default as Iframe } from './iframe';
 export { default as Loader } from './Loader/Loader';
 export { default as useToggle } from './UseToggle';
+export { default as GoogleMap } from './googleMap';
+export { default as Marker } from './Marker';

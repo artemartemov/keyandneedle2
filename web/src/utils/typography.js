@@ -5,16 +5,6 @@ const typography = new Typography({
   baseFontSize: '16px',
   baseLineHeight: 1.8,
   scaleRatio: 2.625,
-  googleFonts: [
-    {
-      name: 'Open Sans',
-      styles: ['300', '400', '600', '900'],
-    },
-    {
-      name: 'Montserrat',
-      styles: ['600', '800'],
-    },
-  ],
   headerFontFamily: [
     'Montserrat',
     'system-ui',

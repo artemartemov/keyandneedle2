@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import X from 'react-feather/dist/icons/x';
-import { colors } from 'utils';
+import { colors, mq } from 'utils';
 
 const AbsoluteCenter = css`
   position: fixed;
@@ -14,17 +14,21 @@ const AbsoluteCenter = css`
 `;
 
 export const ModalWrapper = styled.div`
-  width: ${props => props.modalWidth};
+  width: 100vw;
   max-width: ${props => props.maxModalWidth};
   background: ${props => props.background};
   max-height: ${props => props.maxHeight};
   overflow: ${props => props.overflow || 'scroll'};
   z-index: 999999;
 
+  ${mq.desktop`
+    width: ${props => props.modalWidth};
+  `}
+
   ${props => (props.centered ? AbsoluteCenter : null)};
 
   ${props =>
-    props.isSidePanel
+    props.issidepanel
       ? css`
           position: fixed;
           top: 0;
@@ -32,7 +36,7 @@ export const ModalWrapper = styled.div`
       : null};
 
   ${props =>
-    props.isSidePanelRight
+    props.issidepanelright
       ? css`
           position: fixed;
           top: 0;
@@ -79,9 +83,13 @@ const IconContainer = styled.div`
   float: right;
 `;
 
+const CloseIcon = styled(X).attrs({
+  size: 32,
+})``;
+
 const Modal = ({
-  isSidePanel,
-  isSidePanelRight,
+  issidepanel,
+  issidepanelright,
   centered,
   background,
   modalWidth,
@@ -94,14 +102,14 @@ const Modal = ({
 }) => {
   const closeIconWrapper = (
     <IconContainer onClick={onClose} data-testid="modal-close">
-      <X color={colors.beige.light} size={32} />
+      <CloseIcon color={issidepanel ? colors.beige.light : colors.grey.dark} />
     </IconContainer>
   );
 
   const modalMarkup = (
     <ModalWrapper
-      isSidePanel={isSidePanel}
-      isSidePanelRight={isSidePanelRight}
+      issidepanel={issidepanel}
+      issidepanelright={issidepanelright}
       className={className}
       modalWidth={modalWidth}
       maxModalWidth={maxModalWidth}
@@ -111,9 +119,9 @@ const Modal = ({
       data-testid="modal-wrapper"
     >
       <ModalHeader>
-        {isSidePanel && closeIconWrapper}
-        {isSidePanel ||
-          (isSidePanelRight !== true && title && <ModalTitle data-testid="modal-header">{title}</ModalTitle>)}
+        {(issidepanel || issidepanelright) && closeIconWrapper}
+        {issidepanel ||
+          (issidepanelright !== true && title && <ModalTitle data-testid="modal-header">{title}</ModalTitle>)}
       </ModalHeader>
       {children}
     </ModalWrapper>

@@ -38,15 +38,11 @@ export default {
   ],
   preview: {
     select: {
-      title: 'title',
-      media: 'heroImage',
-      subtitle: '/'
+      title: 'title'
     },
-    prepare ({title = 'No title', media, subtitle = '/'}) {
+    prepare ({title = 'No title'}) {
       return {
-        title,
-        media,
-        subtitle
+        title
       }
     }
   }

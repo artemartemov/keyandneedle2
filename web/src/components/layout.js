@@ -1,9 +1,10 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
+
 import styled, { createGlobalStyle } from 'styled-components';
-import { Header } from 'components';
 
 const GlobalStyle = createGlobalStyle`
- &  body {
+  & body {
     background: #010203;
   }
 
@@ -23,12 +24,15 @@ const LayoutWrapper = styled.div`
   overflow-x: hidden;
 `;
 
-const Layout = ({ children, companyInfo, onHideNav, onShowNav, showNav, siteTitle }) => (
+const Layout = ({ children }) => (
   <>
     <GlobalStyle />
-    <Header />
     <LayoutWrapper>{children}</LayoutWrapper>
   </>
 );
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Layout;

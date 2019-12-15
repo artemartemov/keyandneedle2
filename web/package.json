@@ -6,6 +6,7 @@
   "scripts": {
     "build": "gatsby build",
     "clean-cache": "gatsby clean",
+    "mobile": "gatsby develop -o -H $HOSTNAME -p 8000",
     "dev": "yarn run clean-cache && gatsby develop",
     "lint": "eslint .",
     "format": "prettier-eslint --write \"**/*.+(js|jsx|md|json)\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",

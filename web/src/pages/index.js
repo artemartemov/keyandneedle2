@@ -12,14 +12,14 @@ import {
   BgImageSlider,
   PortableText,
   Modal,
+  Header,
   Iframe,
   useToggle,
   Loader,
-  keyPress,
   GoogleMap,
 } from 'components';
 
-import { colors, scale } from 'utils';
+import { colors, scale, mq } from 'utils';
 
 const MainTextWrapper = styled.div`
   position: absolute;
@@ -92,6 +92,106 @@ const LoadingWrapper = styled.div`
   height: 100%;
 `;
 
+const ContactModalContent = styled.div`
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  width: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+
+  ${mq.desktopWide`
+    justify-content: space-around;
+  `}
+`;
+
+const GoogleMapContainer = styled.div`
+  display: flex;
+`;
+
+const ContactInfoContainer = styled.div`
+  flex: 1 0 55%;
+
+  ${mq.desktop`
+    flex: 0;
+    margin-bottom: 5rem;
+  `}
+`;
+
+const ModalSectionHeading = styled.h3`
+  ${scale(-0)}
+  text-align: center;
+  padding: 0;
+  line-height: 1;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+
+  & span {
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      border-bottom: 0.125rem solid rgba(0, 0, 0, 0.6);
+      width: 2.25rem;
+      border-radius: 0.125rem;
+    }
+
+    &:before {
+      right: 100%;
+      margin-right: 0.9375rem;
+    }
+
+    &:after {
+      left: 100%;
+      margin-left: 0.9375rem;
+    }
+  }
+`;
+
+const ContactItemContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+  grid-gap: 1rem;
+  grid-auto-flow: dense;
+`;
+
+const ContactItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  h1 {
+    ${scale(0.25)}
+    color: #000;
+    line-height: 1.7;
+    margin: 1.25rem 0 0;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  p,
+  a {
+    ${scale(-0.3)}
+    line-height: 1.45;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  a {
+    text-decoration: none;
+  }
+`;
+
 export const query = graphql`
   query IndexPageQuery {
     site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
@@ -118,6 +218,17 @@ export const query = graphql`
         lng
       }
     }
+
+    contact: sanityContactPage(_id: { eq: "contactPage" }) {
+      employeeListing {
+        employee {
+          name
+          position
+          email
+          phoneNumber
+        }
+      }
+    }
   }
 `;
 
@@ -131,7 +242,9 @@ const IndexPage = ({ data, errors }) => {
   }
 
   const site = data && data.site;
-  const homepage = data && data.homepage;
+  const homepage = (data && data.homepage) || '';
+  const contactData = (data && data.contact.employeeListing) || '';
+
   const imageBgNodes = homepage && homepage.bgImages;
 
   const [openBookingModal, toggleBookingModal] = useToggle(false);
@@ -176,6 +289,7 @@ const IndexPage = ({ data, errors }) => {
   return (
     <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
+      <Header onClick={() => toggleContactModal(false)} />
       <BgImageSlider imageSlides={imageBgNodes} />
       <MainTextWrapper>
         <h1>{homepage.headlineText}</h1>
@@ -183,9 +297,6 @@ const IndexPage = ({ data, errors }) => {
         <MainButton type="button" onClick={() => toggleBookingModal()}>
           {homepage.buttonText}
         </MainButton>
-        <button type="button" onClick={() => toggleContactModal()}>
-          Contact Modal
-        </button>
       </MainTextWrapper>
 
       {openBookingModal && <ModalWrapper onClick={() => toggleBookingModal(false)} />}
@@ -202,12 +313,12 @@ const IndexPage = ({ data, errors }) => {
       >
         <Modal
           title="My Cool Modal"
-          isSidePanel
+          issidepanel
           maxModalWidth="600px"
           modalWidth="66%"
           background="#ffffff"
           onClose={() => toggleBookingModal()}
-          onKeyDown={keyPress('Escape', () => toggleBookingModal(false))}
+          // onKeyDown={keyPress('Escape', () => toggleBookingModal())}
         >
           {isLoading && (
             <LoadingWrapper>
@@ -236,18 +347,39 @@ const IndexPage = ({ data, errors }) => {
       >
         <Modal
           title="Contact Modal"
-          isSidePanelRight
+          issidepanelright
           maxModalWidth="600px"
           modalWidth="66%"
           background={colors.beige.light}
           onClose={() => toggleContactModal()}
-          onKeyDown={keyPress('Escape', () => toggleContactModal(false))}
+          // onKeyDown={keyPress('Escape', () => toggleContactModal())}
         >
-          <GoogleMap
-            center={[homepage.location.lat, homepage.location.lng]}
-            lat={homepage.location.lat}
-            lng={homepage.location.lng}
-          />
+          <ContactModalContent>
+            <ContactInfoContainer>
+              <ModalSectionHeading>
+                <span>K+N Studio</span>
+              </ModalSectionHeading>
+
+              <ContactItemContainer>
+                {contactData.map(({ employee }, i) => (
+                  <ContactItem key={i.toString()}>
+                    <h1>{employee.name}</h1>
+                    <p>{employee.position}</p>
+                    <a href={`mailto:${employee.email}`}>{employee.email}</a>
+                    <a href={`tel:${employee.phoneNumber}`}>{employee.phoneNumber}</a>
+                  </ContactItem>
+                ))}
+              </ContactItemContainer>
+            </ContactInfoContainer>
+
+            <GoogleMapContainer>
+              <GoogleMap
+                center={[homepage.location.lat, homepage.location.lng]}
+                lat={homepage.location.lat}
+                lng={homepage.location.lng}
+              />
+            </GoogleMapContainer>
+          </ContactModalContent>
         </Modal>
       </Transition>
     </Layout>

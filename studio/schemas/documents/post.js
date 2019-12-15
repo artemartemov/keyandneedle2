@@ -40,12 +40,12 @@ export default {
         'This ends up on summary pages, on Google, when people share your post in social media.'
     },
     {
-      name: 'authors',
-      title: 'Authors',
+      name: 'employees',
+      title: 'Employees',
       type: 'array',
       of: [
         {
-          type: 'authorReference'
+          type: 'employeeReference'
         }
       ]
     },

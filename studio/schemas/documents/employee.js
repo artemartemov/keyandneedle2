@@ -1,7 +1,7 @@
 export default {
-  name: 'author',
+  name: 'employee',
   type: 'document',
-  title: 'Author',
+  title: 'Employee Listing',
   fields: [
     {
       name: 'name',
@@ -20,8 +20,27 @@ export default {
     },
     {
       name: 'image',
-      type: 'mainImage',
-      title: 'Image'
+      type: 'figure',
+      title: 'Image',
+      description: 'Optional, but may be used for front end purposes'
+    },
+    {
+      name: 'position',
+      type: 'string',
+      title: 'Employee Position',
+      description: 'Example: Engineer, Producer, Janitor, HBIC'
+    },
+    {
+      name: 'email',
+      type: 'email',
+      title: 'Email',
+      description: 'Example: contact@sitename.com'
+    },
+    {
+      name: 'phoneNumber',
+      type: 'string',
+      title: 'Telephone Number',
+      description: 'Example: 240-555-5555'
     },
     {
       name: 'bio',

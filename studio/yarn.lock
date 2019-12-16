@@ -758,7 +758,6 @@
 "@sanity/cli@^0.146.0":
   version "0.146.0"
   resolved "https://registry.yarnpkg.com/@sanity/cli/-/cli-0.146.0.tgz#4d1f586ee91ce95ce5dab510c829309b85ede955"
-  integrity sha512-wEDfmAcMV0cvMh9+GRYfPEq5j7AAd3U5vvnkwPWQQNSytGkS5J1KZccLcT5ZHWEMTG364yuqdavvkBuCaQxKAw==
 
 "@sanity/client@0.140.36":
   version "0.140.36"
@@ -7581,6 +7580,13 @@ sanity-plugin-dashboard-widget-document-list@^0.0.8:
     "@sanity/base" "^0.140.9"
     "@sanity/components" "^0.140.9"
     lodash "^4.17.11"
+
+sanity-plugin-dashboard-widget-gatsby@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.npmjs.org/sanity-plugin-dashboard-widget-gatsby/-/sanity-plugin-dashboard-widget-gatsby-1.0.9.tgz#2f7e2fcbb0e9465cd44a0cca06c4d30824b55546"
+  dependencies:
+    abort-controller "^2.0.3"
+    react-props-stream "^1.0.0"
 
 sanity-plugin-dashboard-widget-netlify@^1.0.1:
   version "1.0.1"

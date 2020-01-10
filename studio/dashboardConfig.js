@@ -6,16 +6,6 @@ export default {
         templateRepoId: 'sanity-io/sanity-template-gatsby-blog'
       }
     },
-    {
-      name: 'gatsby',
-      options: {
-        sites: [
-          {
-            siteUrl: 'http://localhost:3333'
-          }
-        ]
-      }
-    },
     {name: 'structure-menu'},
     {
       name: 'project-info',

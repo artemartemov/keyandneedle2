@@ -1,7 +1,9 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { createGlobalStyle } from 'styled-components';
 
-import styled, { createGlobalStyle } from 'styled-components';
+import { Transition } from 'components';
+import { mq } from 'utils';
 
 const GlobalStyle = createGlobalStyle`
   & body {
@@ -9,30 +11,27 @@ const GlobalStyle = createGlobalStyle`
   }
 
   & a {
-    color: #0e0fed;
-    text-decoration: underline;
-    text-decoration-skip: ink;
+    text-decoration: none;
 
-    &:hover {
-      color: #000000;
-    }
+    ${mq.desktop`
+      &:hover {
+        text-decoration: underline;
+        text-decoration-skip: ink;
+      }
+  `}
   }
 `;
 
-const LayoutWrapper = styled.div`
-  max-width: 100vw;
-  overflow-x: hidden;
-`;
-
-const Layout = ({ children }) => (
+const Layout = ({ children, location }) => (
   <>
     <GlobalStyle />
-    <LayoutWrapper>{children}</LayoutWrapper>
+    <Transition location={location}>{children}</Transition>
   </>
 );
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default Layout;

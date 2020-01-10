@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "gatsby-image": "^2.0.41",
+    "gatsby-plugin-layout": "^1.1.18",
     "gatsby-plugin-react-svg": "^2.1.2",
     "gatsby-plugin-sharp": "^2.2.12",
     "gatsby-plugin-typography": "^2.3.2",

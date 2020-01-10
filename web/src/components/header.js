@@ -1,9 +1,9 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
-import { colors } from 'utils';
+import { colors, scale } from 'utils';
+import { useToggle, ContactModal } from 'components';
 import LogoIcon from './icons/logo.svg';
 
 const HeaderWrapper = styled.header`
@@ -32,9 +32,15 @@ const Navigation = styled.nav`
       margin-left: 1rem;
     }
   }
+
+  a {
+    ${scale(0.05)};
+    color: ${colors.white};
+    cursor: pointer;
+  }
 `;
 
-const Header = ({ onClick }) => {
+const Header = () => {
   const logoAnimations = useSpring({
     from: {
       opacity: 0,
@@ -46,6 +52,8 @@ const Header = ({ onClick }) => {
     top: '2rem',
   });
 
+  const [openContactModal, toggleContactModal] = useToggle(false);
+
   return (
     <HeaderWrapper>
       <Logo to="/" style={logoAnimations}>
@@ -54,29 +62,25 @@ const Header = ({ onClick }) => {
       <Navigation>
         <ul>
           <li>
-            <a tabIndex="0" role="button" onKeyDown={onClick} onClick={onClick}>
-              Contact
-            </a>
+            <Link to="/">Home</Link>
           </li>
           <li>
             <Link to="/gearListing">Gear</Link>
           </li>
+          <li>
+            <a tabIndex="0" role="button" onKeyDown={() => toggleContactModal()} onClick={() => toggleContactModal()}>
+              Contact
+            </a>
+          </li>
         </ul>
       </Navigation>
+      <ContactModal onClose={() => toggleContactModal()} isModalOpen={openContactModal} />
 
       {/* <button type="button" onClick={showNav ? onHideNav : onShowNav}>
         <Icon symbol="hamburger" />
       </button> */}
     </HeaderWrapper>
   );
-};
-
-Header.propTypes = {
-  onClick: PropTypes.func,
-};
-
-Header.defaultProps = {
-  onClick: null,
 };
 
 export default Header;

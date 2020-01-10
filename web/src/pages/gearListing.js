@@ -3,9 +3,15 @@ import { PropTypes } from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import { GraphQLErrorList, SEO, Layout, Header } from 'components';
+import { GraphQLErrorList, SEO, Layout, Header, Icon } from 'components';
 
-import { scale } from 'utils';
+import { scale, colors, mq } from 'utils';
+
+const ByRequestIcon = styled(Icon).attrs({
+  symbol: 'special',
+  color: colors.grey.medium,
+  size: '20',
+})``;
 
 const GearListingWrapper = styled.div`
   width: 100%;
@@ -23,6 +29,10 @@ const GearSectionCounter = styled.span`
   color: gray;
   letter-spacing: 0.15em;
   font-weight: 200;
+
+  ${mq.desktop`
+    transition: left 0.2s linear;
+  `}
 `;
 
 const GearSectionTitle = styled.h1`
@@ -31,6 +41,11 @@ const GearSectionTitle = styled.h1`
   width: 100%;
   word-break: break-all;
   color: white;
+
+  ${mq.desktop`
+    transform: scale(1);
+    transition: transform 0.2s linear;
+  `}
 `;
 
 const GearSection = styled.div`
@@ -48,8 +63,29 @@ const GearSection = styled.div`
 
     li {
       margin-bottom: 2%;
+      display: flex;
     }
   }
+
+  ${mq.desktop`
+    &:hover {
+      ${GearSectionTitle} {
+        transform: scale(1.01);
+      }
+
+      ${GearSectionCounter} {
+        left: -2.25rem;
+      }
+    }
+
+    li {
+      transition: opacity 0.2s linear;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  `}
 `;
 
 export const query = graphql`
@@ -74,10 +110,10 @@ export const query = graphql`
   }
 `;
 
-const GearListingPage = ({ data, errors }) => {
+const GearListingPage = ({ data, errors, location }) => {
   if (errors) {
     return (
-      <Layout>
+      <Layout location={location}>
         <GraphQLErrorList errors={errors} />
       </Layout>
     );
@@ -95,7 +131,7 @@ const GearListingPage = ({ data, errors }) => {
   }
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Header />
 
@@ -109,8 +145,10 @@ const GearListingPage = ({ data, errors }) => {
             <ul>
               {gearItems.map(({ gearItemTitle, gearSpecialRequest, _key }) => (
                 <React.Fragment key={_key}>
-                  <li>{gearItemTitle}</li>
-                  {gearSpecialRequest && <pre>special, yo++</pre>}
+                  <li gearSpecialRequest={gearSpecialRequest}>
+                    {gearItemTitle}
+                    {gearSpecialRequest && <ByRequestIcon />}
+                  </li>
                 </React.Fragment>
               ))}
             </ul>
@@ -125,6 +163,7 @@ GearListingPage.propTypes = {
   data: PropTypes.any.isRequired,
   errors: PropTypes.any,
   site: PropTypes.any,
+  location: PropTypes.object.isRequired,
 };
 
 GearListingPage.defaultProps = {

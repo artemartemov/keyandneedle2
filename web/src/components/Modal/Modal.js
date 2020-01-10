@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import X from 'react-feather/dist/icons/x';
+import { Transition } from 'react-transition-group';
 import { colors, mq } from 'utils';
 
 const AbsoluteCenter = css`
@@ -83,6 +84,22 @@ const IconContainer = styled.div`
   float: right;
 `;
 
+const ModalBackground = styled.span`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  background: #0000009c;
+  opacity: 0;
+  transition: opacity 1s linear;
+
+  ${props => (props.isActive ? 'opacity: 1;' : null)}
+`;
+
 const CloseIcon = styled(X).attrs({
   size: 32,
 })``;
@@ -99,6 +116,10 @@ const Modal = ({
   children,
   className,
   onKeyDown,
+  isModalOpen,
+  onEnter,
+  onExit,
+  timeout,
 }) => {
   const closeIconWrapper = (
     <IconContainer onClick={onClose} data-testid="modal-close">
@@ -107,24 +128,29 @@ const Modal = ({
   );
 
   const modalMarkup = (
-    <ModalWrapper
-      issidepanel={issidepanel}
-      issidepanelright={issidepanelright}
-      className={className}
-      modalWidth={modalWidth}
-      maxModalWidth={maxModalWidth}
-      background={background}
-      centered={centered}
-      onKeyDown={onKeyDown}
-      data-testid="modal-wrapper"
-    >
-      <ModalHeader>
-        {(issidepanel || issidepanelright) && closeIconWrapper}
-        {issidepanel ||
-          (issidepanelright !== true && title && <ModalTitle data-testid="modal-header">{title}</ModalTitle>)}
-      </ModalHeader>
-      {children}
-    </ModalWrapper>
+    <>
+      <Transition in={isModalOpen} onEnter={onEnter} onExit={onExit} unmountOnExit timeout={timeout}>
+        <ModalWrapper
+          issidepanel={issidepanel}
+          issidepanelright={issidepanelright}
+          className={className}
+          modalWidth={modalWidth}
+          maxModalWidth={maxModalWidth}
+          background={background}
+          centered={centered}
+          onKeyDown={onKeyDown}
+          data-testid="modal-wrapper"
+        >
+          <ModalHeader>
+            {(issidepanel || issidepanelright) && closeIconWrapper}
+            {issidepanel ||
+              (issidepanelright !== true && title && <ModalTitle data-testid="modal-header">{title}</ModalTitle>)}
+          </ModalHeader>
+          {children}
+        </ModalWrapper>
+      </Transition>
+      {isModalOpen && <ModalBackground onClick={onClose} isActive={isModalOpen} />}
+    </>
   );
 
   return createPortal(modalMarkup, document.body);

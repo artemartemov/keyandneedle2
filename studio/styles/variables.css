@@ -21,7 +21,7 @@
 	/* Colors */
 	--body-bg: #19162A;
 	--body-text: #bbbbbb;
-	--component-bg: #dde0e6;
+	--component-bg: #19162A;
 	--component-text-color: #9ca8bd;
 	--preview-placeholder-color: color(var(--component-bg) contrast(80%) alpha(10%));
 	--component-border-color: color(var(--component-bg) contrast(80%) a(20%));

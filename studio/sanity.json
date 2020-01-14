@@ -29,7 +29,8 @@
     "dashboard-widget-structure-menu",
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
-    "@sanity/google-maps-input"
+    "@sanity/google-maps-input",
+    "dashboard-widget-gatsby"
   ],
   "parts": [
     {
@@ -43,6 +44,10 @@
     {
       "implements": "part:@sanity/dashboard/config",
       "path": "dashboardConfig.js"
+    },
+    {
+      "implements": "part:@sanity/base/theme/variables/override-style",
+      "path": "./styles/variables.css"
     }
   ]
 }

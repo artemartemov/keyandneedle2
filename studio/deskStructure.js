@@ -3,7 +3,7 @@ import MdSettings from 'react-icons/lib/md/settings'
 import MdPerson from 'react-icons/lib/md/person'
 
 const hiddenDocTypes = listItem =>
-  !['indexPage', 'category', 'author', 'post', 'siteSettings'].includes(listItem.getId())
+  !['indexPage', 'category', 'post', 'siteSettings', 'gearSection', 'gearPage', 'contactPage'].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -16,6 +16,22 @@ export default () =>
             .id('indexPage')
             .schemaType('indexPage')
             .documentId('indexPage')
+        ),
+      S.listItem()
+        .title('Gear Listing Page')
+        .child(
+          S.editor()
+            .id('gearPage')
+            .schemaType('gearPage')
+            .documentId('gearPage')
+        ),
+      S.listItem()
+        .title('Contact')
+        .child(
+          S.editor()
+            .id('contactPage')
+            .schemaType('contactPage')
+            .documentId('contactPage')
         ),
       S.listItem()
         .title('Settings')

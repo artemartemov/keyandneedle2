@@ -16,5 +16,10 @@
   "devDependencies": {
     "@sanity/cli": "^0.140.17",
     "lerna": "^3.13.1"
+  },
+  "dependencies": {
+    "gatsby": "^2.18.18",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }

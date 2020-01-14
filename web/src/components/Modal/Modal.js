@@ -1,9 +1,11 @@
 import React from 'react';
-import { createPortal } from 'react-dom';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import X from 'react-feather/dist/icons/x';
-import { colors } from 'utils';
+import { Transition } from 'react-transition-group';
+import { colors, mq } from 'utils';
+
+import Portal from '../../hooks/createPortal';
 
 const AbsoluteCenter = css`
   position: fixed;
@@ -14,17 +16,21 @@ const AbsoluteCenter = css`
 `;
 
 export const ModalWrapper = styled.div`
-  width: ${props => props.modalWidth};
+  width: 100vw;
   max-width: ${props => props.maxModalWidth};
   background: ${props => props.background};
   max-height: ${props => props.maxHeight};
   overflow: ${props => props.overflow || 'scroll'};
   z-index: 999999;
 
+  ${mq.desktop`
+    width: ${props => props.modalWidth};
+  `}
+
   ${props => (props.centered ? AbsoluteCenter : null)};
 
   ${props =>
-    props.isSidePanel
+    props.issidepanel
       ? css`
           position: fixed;
           top: 0;
@@ -32,7 +38,7 @@ export const ModalWrapper = styled.div`
       : null};
 
   ${props =>
-    props.isSidePanelRight
+    props.issidepanelright
       ? css`
           position: fixed;
           top: 0;
@@ -79,9 +85,29 @@ const IconContainer = styled.div`
   float: right;
 `;
 
+const ModalBackground = styled.span`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  background: #0000009c;
+  opacity: 0;
+  transition: opacity 1s linear;
+
+  ${props => (props.isActive ? 'opacity: 1;' : null)}
+`;
+
+const CloseIcon = styled(X).attrs({
+  size: 32,
+})``;
+
 const Modal = ({
-  isSidePanel,
-  isSidePanelRight,
+  issidepanel,
+  issidepanelright,
   centered,
   background,
   modalWidth,
@@ -91,35 +117,47 @@ const Modal = ({
   children,
   className,
   onKeyDown,
+  isModalOpen,
+  onEnter,
+  onExit,
+  timeout,
 }) => {
   const closeIconWrapper = (
     <IconContainer onClick={onClose} data-testid="modal-close">
-      <X color={colors.beige.light} size={32} />
+      <CloseIcon color={issidepanel ? colors.beige.light : colors.grey.dark} />
     </IconContainer>
   );
 
   const modalMarkup = (
-    <ModalWrapper
-      isSidePanel={isSidePanel}
-      isSidePanelRight={isSidePanelRight}
-      className={className}
-      modalWidth={modalWidth}
-      maxModalWidth={maxModalWidth}
-      background={background}
-      centered={centered}
-      onKeyDown={onKeyDown}
-      data-testid="modal-wrapper"
-    >
-      <ModalHeader>
-        {isSidePanel && closeIconWrapper}
-        {isSidePanel ||
-          (isSidePanelRight !== true && title && <ModalTitle data-testid="modal-header">{title}</ModalTitle>)}
-      </ModalHeader>
-      {children}
-    </ModalWrapper>
+    <>
+      <Transition in={isModalOpen} onEnter={onEnter} onExit={onExit} unmountOnExit timeout={timeout}>
+        <Portal>
+          <ModalWrapper
+            issidepanel={issidepanel}
+            issidepanelright={issidepanelright}
+            className={className}
+            modalWidth={modalWidth}
+            maxModalWidth={maxModalWidth}
+            background={background}
+            centered={centered}
+            onKeyDown={onKeyDown}
+            data-testid="modal-wrapper"
+          >
+            <ModalHeader>
+              {(issidepanel || issidepanelright) && closeIconWrapper}
+              {issidepanel ||
+                (issidepanelright !== true && title && <ModalTitle data-testid="modal-header">{title}</ModalTitle>)}
+            </ModalHeader>
+            {children}
+          </ModalWrapper>
+        </Portal>
+      </Transition>
+
+      {isModalOpen && <ModalBackground onClick={onClose} isActive={isModalOpen} />}
+    </>
   );
 
-  return createPortal(modalMarkup, document.body);
+  return modalMarkup;
 };
 
 Modal.propTypes = {

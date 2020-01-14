@@ -1,34 +1,40 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
-import { Header } from 'components';
+
+import { mq } from 'utils';
 
 const GlobalStyle = createGlobalStyle`
- &  body {
+  & body {
     background: #010203;
   }
 
   & a {
-    color: #0e0fed;
-    text-decoration: underline;
-    text-decoration-skip: ink;
+    text-decoration: none;
 
-    &:hover {
-      color: #000000;
-    }
+    ${mq.desktop`
+      &:hover {
+        text-decoration: underline;
+        text-decoration-skip: ink;
+      }
+  `}
   }
 `;
 
 const LayoutWrapper = styled.div`
-  max-width: 100vw;
-  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
 `;
 
-const Layout = ({ children, companyInfo, onHideNav, onShowNav, showNav, siteTitle }) => (
+const Layout = ({ children }) => (
   <>
     <GlobalStyle />
-    <Header />
     <LayoutWrapper>{children}</LayoutWrapper>
   </>
 );
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Layout;

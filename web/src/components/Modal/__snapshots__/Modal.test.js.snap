@@ -2,6 +2,7 @@
 
 exports[`<Modal /> #render() ModalWrapper centered 1`] = `
 .c0 {
+  width: 100vw;
   overflow: scroll;
   z-index: 999999;
   position: fixed;

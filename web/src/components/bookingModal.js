@@ -6,7 +6,12 @@ import { TweenMax } from 'gsap';
 
 import { colors } from 'utils';
 
-import { Modal, useToggle, Loader, Iframe } from 'components';
+// import { Modal, useToggle, Loader, Iframe } from 'components';
+
+import Modal from 'components/Modal/Modal';
+import Loader from 'components/Loader/Loader';
+import useToggle from 'components/UseToggle';
+import Iframe from 'components/iframe';
 
 const LoadingWrapper = styled.div`
   display: flex;

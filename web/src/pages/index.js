@@ -3,16 +3,25 @@ import { PropTypes } from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import {
-  GraphQLErrorList,
-  SEO,
-  Layout,
-  BgImageSlider,
-  PortableText,
-  Header,
-  useToggle,
-  BookingModal,
-} from 'components';
+// import {
+//   GraphQLErrorList,
+//   SEO,
+//   Layout,
+//   BgImageSlider,
+//   PortableText,
+//   Header,
+//   useToggle,
+//   BookingModal,
+// } from 'components';
+
+import GraphQLErrorList from 'components/graphql-error-list';
+import SEO from 'components/seo';
+import Layout from 'components/layout';
+import BgImageSlider from 'components/BgImageSlider';
+import PortableText from 'components/portableText';
+import Header from 'components/header';
+import useToggle from 'components/UseToggle';
+import BookingModal from 'components/bookingModal';
 
 import { colors, scale } from 'utils';
 
@@ -87,15 +96,11 @@ export const query = graphql`
           _id
         }
       }
-      location {
-        lat
-        lng
-      }
     }
   }
 `;
 
-const IndexPage = ({ data, errors, location }) => {
+const IndexPage = ({ data, errors }) => {
   if (errors) {
     return (
       <Layout>
@@ -116,7 +121,7 @@ const IndexPage = ({ data, errors, location }) => {
   }
 
   return (
-    <Layout location={location}>
+    <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Header />
       <BgImageSlider imageSlides={imageBgNodes} />
@@ -137,7 +142,6 @@ IndexPage.propTypes = {
   errors: PropTypes.any,
   site: PropTypes.any,
   homepage: PropTypes.any,
-  location: PropTypes.object.isRequired,
 };
 
 IndexPage.defaultProps = {

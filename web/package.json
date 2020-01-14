@@ -10,7 +10,8 @@
     "dev": "yarn run clean-cache && gatsby develop",
     "lint": "eslint .",
     "format": "prettier-eslint --write \"**/*.+(js|jsx|md|json)\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
-    "test": "jest"
+    "test": "jest",
+    "eslint-check": "eslint --print-config ./src/pages/index.js | eslint-config-prettier-check"
   },
   "husky": {
     "hooks": {

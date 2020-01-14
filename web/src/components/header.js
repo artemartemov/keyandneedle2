@@ -3,7 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import { colors, scale } from 'utils';
-import { useToggle, ContactModal } from 'components';
+import useToggle from 'components/UseToggle';
+import ContactModal from 'components/contactModal';
 import LogoIcon from './icons/logo.svg';
 
 const HeaderWrapper = styled.header`

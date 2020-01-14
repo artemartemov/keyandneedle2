@@ -3,7 +3,13 @@ import { PropTypes } from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import { GraphQLErrorList, SEO, Layout, Header, Icon } from 'components';
+// import { GraphQLErrorList, SEO, Layout, Header, Icon } from 'components';
+
+import GraphQLErrorList from 'components/graphql-error-list';
+import SEO from 'components/seo';
+import Layout from 'components/layout';
+import Header from 'components/header';
+import Icon from 'components/icons/';
 
 import { scale, colors, mq } from 'utils';
 
@@ -110,10 +116,10 @@ export const query = graphql`
   }
 `;
 
-const GearListingPage = ({ data, errors, location }) => {
+const GearListingPage = ({ data, errors }) => {
   if (errors) {
     return (
-      <Layout location={location}>
+      <Layout>
         <GraphQLErrorList errors={errors} />
       </Layout>
     );
@@ -131,7 +137,7 @@ const GearListingPage = ({ data, errors, location }) => {
   }
 
   return (
-    <Layout location={location}>
+    <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Header />
 
@@ -143,11 +149,11 @@ const GearListingPage = ({ data, errors, location }) => {
               {sectionTitle}
             </GearSectionTitle>
             <ul>
-              {gearItems.map(({ gearItemTitle, gearSpecialRequest, _key }) => (
+              {gearItems.map(({ gearItemTitle, gearSpecialRequest: gearspecialrequest, _key }) => (
                 <React.Fragment key={_key}>
-                  <li gearSpecialRequest={gearSpecialRequest}>
+                  <li gearspecialrequest={gearspecialrequest.toString()}>
                     {gearItemTitle}
-                    {gearSpecialRequest && <ByRequestIcon />}
+                    {gearspecialrequest && <ByRequestIcon />}
                   </li>
                 </React.Fragment>
               ))}
@@ -163,7 +169,6 @@ GearListingPage.propTypes = {
   data: PropTypes.any.isRequired,
   errors: PropTypes.any,
   site: PropTypes.any,
-  location: PropTypes.object.isRequired,
 };
 
 GearListingPage.defaultProps = {

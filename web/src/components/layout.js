@@ -1,8 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
-import { Transition } from 'components';
 import { mq } from 'utils';
 
 const GlobalStyle = createGlobalStyle`
@@ -22,16 +21,20 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Layout = ({ children, location }) => (
+const LayoutWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const Layout = ({ children }) => (
   <>
     <GlobalStyle />
-    <Transition location={location}>{children}</Transition>
+    <LayoutWrapper>{children}</LayoutWrapper>
   </>
 );
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  location: PropTypes.object.isRequired,
 };
 
 export default Layout;

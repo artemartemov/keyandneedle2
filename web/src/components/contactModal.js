@@ -6,7 +6,9 @@ import { TweenMax } from 'gsap';
 
 import { scale, mq, colors } from 'utils';
 
-import { Modal, GoogleMap } from 'components';
+import Modal from 'components/Modal/Modal';
+import GoogleMap from 'components/googleMap';
+
 import UseContactData from '../hooks/contact-data';
 
 const ContactModalContent = styled.div`

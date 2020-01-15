@@ -16,6 +16,36 @@ export default {
       description: 'Describe your blog for search engines and social media.'
     },
     {
+      name: 'author',
+      type: 'text',
+      title: 'Author',
+      description: 'Name of the author or this website'
+    },
+    {
+      name: 'siteUrl',
+      type: 'url',
+      title: 'Site URL',
+      description: 'Site URL for SEO'
+    },
+    {
+      name: 'facebookUrl',
+      type: 'url',
+      title: 'Facebook URL',
+      description: 'Facebook URL for SEO'
+    },
+    {
+      name: 'twitterUrl',
+      type: 'url',
+      title: 'Twitter URL',
+      description: 'Twitter URL for SEO'
+    },
+    {
+      name: 'soundcloudUrl',
+      type: 'url',
+      title: 'Soundcloud URL',
+      description: 'Soundcloud URL for SEO'
+    },
+    {
       name: 'keywords',
       type: 'array',
       title: 'Keywords',

@@ -77,13 +77,13 @@ const MainButton = styled.button`
 
 export const query = graphql`
   query IndexPageQuery {
-    site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
+    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       title
       description
       keywords
     }
 
-    homepage: sanityIndexPage(_id: { eq: "indexPage" }) {
+    homepage: sanityIndexPage(_id: { regex: "/(drafts.|)indexPage/" }) {
       headlineText
       _rawSubhead
       buttonText

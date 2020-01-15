@@ -55,11 +55,6 @@ module.exports = {
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
-        query: `{
-          site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
-            siteUrl
-          }
-        }`,
         resolveEnv: () => NETLIFY_ENV,
         env: {
           production: {

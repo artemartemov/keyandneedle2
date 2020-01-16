@@ -12,7 +12,6 @@ export default {
       name: 'gearItems',
       title: 'Gear Items',
       of: [{type: 'gearItem'}]
-      // options: {editModal: 'popover'}
     }
   ],
 

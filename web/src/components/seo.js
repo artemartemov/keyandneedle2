@@ -13,7 +13,6 @@ function SEO({ description, lang, meta, keywords, title }) {
       render={data => {
         const metaDescription = description || (data.site && data.site.description) || '';
         const siteTitle = (data.site && data.site.title) || '';
-        const siteAuthor = (data.site && data.site.author) || '';
         // const metaImage =
         //   image && image.asset
         //     ? imageUrlFor(buildImageObj(image))
@@ -53,10 +52,6 @@ function SEO({ description, lang, meta, keywords, title }) {
                 {
                   name: 'twitter:card',
                   content: 'summary',
-                },
-                {
-                  name: 'twitter:creator',
-                  content: siteAuthor,
                 },
                 {
                   name: 'twitter:title',
@@ -128,7 +123,6 @@ const detailsQuery = graphql`
       description
       keywords
       siteUrl
-      author
       facebookUrl
       twitterUrl
       soundcloudUrl

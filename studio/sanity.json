@@ -30,7 +30,8 @@
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
     "@sanity/google-maps-input",
-    "dashboard-widget-gatsby"
+    "dashboard-widget-gatsby",
+    "kn-logo"
   ],
   "parts": [
     {

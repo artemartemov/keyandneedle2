@@ -24,9 +24,11 @@ function SEO({ description, lang, meta, keywords, title }) {
         return (
           <>
             <Helmet
+              defer={false}
               htmlAttributes={{ lang }}
               title={siteTitle}
               titleTemplate={title === siteTitle ? '%s' : `%s | ${siteTitle}`}
+              link={[{ rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#010203' }]}
               meta={[
                 {
                   name: 'description',
@@ -75,6 +77,7 @@ function SEO({ description, lang, meta, keywords, title }) {
                 )
                 .concat(meta)}
             />
+
             <SchemaOrg
               url={data.site.siteUrl}
               title={siteTitle}

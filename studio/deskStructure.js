@@ -18,6 +18,7 @@ export default () =>
             .schemaType('siteSettings')
             .documentId('siteSettings')
         ),
+      S.divider(),
       S.listItem()
         .title('Homepage')
         .icon(Home)
@@ -36,8 +37,9 @@ export default () =>
             .schemaType('gearPage')
             .documentId('gearPage')
         ),
+      S.divider(),
       S.listItem()
-        .title('Contact Info')
+        .title('Contact Info Modal')
         .icon(Mail)
         .child(
           S.editor()
@@ -49,10 +51,8 @@ export default () =>
         .title('Employees')
         .icon(Users)
         .child(
-          S.editor()
-            .id('employeeListing')
-            .schemaType('employeeListing')
-            .documentId('employeeListing')
+          S.documentTypeList('employee')
+            .title('Employee List')
         ),
       // S.listItem()
       //   .title('Blog posts')

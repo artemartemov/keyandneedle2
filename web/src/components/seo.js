@@ -83,12 +83,19 @@ function SEO({ description, lang, meta, keywords, title }) {
               title={siteTitle}
               description={metaDescription}
               canonicalUrl={data.site.siteUrl}
-              author={data.site.author}
+              author="Artem Artemov"
               organization="Key+Needle"
               defaultTitle={siteTitle}
               facebookUrl={data.site.facebookUrl}
               twitterUrl={data.site.twitterUrl}
               soundcloudUrl={data.site.soundcloudUrl}
+              phoneNumber={data.site.phoneNumber}
+              streetAddress={data.site.streetAddress}
+              cityAddress={data.site.cityAddress}
+              stateAddress={data.site.stateAddress}
+              zipAddress={data.site.zipAddress}
+              lat={data.contact.location.lat}
+              lng={data.contact.location.lng}
             />
           </>
         );
@@ -125,6 +132,17 @@ const detailsQuery = graphql`
       facebookUrl
       twitterUrl
       soundcloudUrl
+      phoneNumber
+      streetAddress
+      cityAddress
+      stateAddress
+      zipAddress
+    }
+    contact: sanityContactPage(_id: { regex: "/(drafts.|)contactPage/" }) {
+      location {
+        lat
+        lng
+      }
     }
   }
 `;

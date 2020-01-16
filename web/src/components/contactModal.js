@@ -83,7 +83,7 @@ const ContactModal = ({ onClose, isModalOpen }) => {
   const data = useStaticQuery(
     graphql`
       query LocationData {
-        sanityIndexPage(_id: { eq: "indexPage" }) {
+        sanityContactPage(_id: { eq: "contactPage" }) {
           location {
             lat
             lng
@@ -92,7 +92,7 @@ const ContactModal = ({ onClose, isModalOpen }) => {
       }
     `
   );
-  const homepage = (data && data.sanityIndexPage) || '';
+  const contactData = (data && data.sanityContactPage) || '';
 
   const duration = 300;
   const contactModalAnimation = (target, dur) =>
@@ -135,9 +135,9 @@ const ContactModal = ({ onClose, isModalOpen }) => {
         </ContactInfoContainer>
         <GoogleMapContainer>
           <GoogleMap
-            center={[homepage.location.lat, homepage.location.lng]}
-            lat={homepage.location.lat}
-            lng={homepage.location.lng}
+            center={[contactData.location.lat, contactData.location.lng]}
+            lat={contactData.location.lat}
+            lng={contactData.location.lng}
           />
         </GoogleMapContainer>
       </ContactModalContent>

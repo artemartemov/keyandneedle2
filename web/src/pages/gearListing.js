@@ -17,7 +17,9 @@ const ByRequestIcon = styled(Icon).attrs({
   symbol: 'special',
   color: colors.grey.medium,
   size: '20',
-})``;
+})`
+  margin-bottom: 10px;
+`;
 
 const GearListingWrapper = styled.div`
   width: 100%;
@@ -39,6 +41,20 @@ const GearSectionCounter = styled.span`
   ${mq.desktop`
     transition: left 0.2s linear;
   `}
+`;
+
+const GearItemCount = styled.span`
+  ${scale(-0.3)};
+  border-radius: 0.25rem;
+  background-color: #3c3c3c;
+  color: #a8a8a8;
+  padding: 3px;
+  margin-right: 10px;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const GearSectionTitle = styled.h1`
@@ -70,6 +86,7 @@ const GearSection = styled.div`
     li {
       margin-bottom: 2%;
       display: flex;
+      align-items: center;
     }
   }
 
@@ -109,6 +126,7 @@ export const query = graphql`
         gearItems {
           _key
           gearItemTitle
+          gearItemCount
           gearSpecialRequest
         }
       }
@@ -149,10 +167,10 @@ const GearListingPage = ({ data, errors }) => {
               {sectionTitle}
             </GearSectionTitle>
             <ul>
-              {gearItems.map(({ gearItemTitle, gearSpecialRequest: gearspecialrequest, _key }) => (
+              {gearItems.map(({ gearItemTitle, gearSpecialRequest: gearspecialrequest, gearItemCount, _key }) => (
                 <React.Fragment key={_key}>
-                  <li gearspecialrequest={gearspecialrequest.toString()}>
-                    {gearItemTitle}
+                  <li>
+                    <GearItemCount>{gearItemCount || '1'}</GearItemCount> {gearItemTitle}
                     {gearspecialrequest && <ByRequestIcon />}
                   </li>
                 </React.Fragment>

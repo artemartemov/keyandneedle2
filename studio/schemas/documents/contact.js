@@ -13,6 +13,11 @@ export default {
       name: 'employeeListing',
       title: 'Employees',
       of: [{type: 'employeeReference'}]
+    },
+    {
+      title: 'Studio Location',
+      name: 'location',
+      type: 'geopoint'
     }
   ],
   preview: {

@@ -1,6 +1,6 @@
 export default {
   name: 'gearItem',
-  type: 'document',
+  type: 'object',
   title: 'Gear Item',
   fields: [
     {

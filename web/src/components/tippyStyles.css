@@ -1,0 +1,16 @@
+.tippy-tooltip.custom-theme {
+  background-color: transparent;
+}
+
+.tippy-tooltip.custom-theme[data-animatefill] {
+  background-color: transparent;
+}
+
+.tippy-tooltip.custom-theme .tippy-backdrop,
+.tippy-tooltip.custom-theme .enter {
+  background-color: transparent;
+}
+
+.tippy-tooltip--small {
+  padding: 0;
+}

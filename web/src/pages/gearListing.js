@@ -2,6 +2,11 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
+import 'react-tippy/dist/tippy.css';
+
+import Img from 'gatsby-image';
+
+import { Tooltip } from 'react-tippy';
 
 // import { GraphQLErrorList, SEO, Layout, Header, Icon } from 'components';
 
@@ -12,6 +17,7 @@ import Header from 'components/header';
 import Icon from 'components/icons/';
 
 import { scale, colors, mq } from 'utils';
+import '../components/tippyStyles.css';
 
 const ByRequestIcon = styled(Icon).attrs({
   symbol: 'special',
@@ -23,10 +29,8 @@ const ByRequestIcon = styled(Icon).attrs({
 
 const GearListingWrapper = styled.div`
   width: 100%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 2rem;
+  display: grid;
+  justify-content: center;
 `;
 
 const GearSectionCounter = styled.span`
@@ -58,13 +62,25 @@ const GearItemCount = styled.span`
 `;
 
 const GearSectionTitle = styled.h1`
-  ${scale(1.5)};
   position: relative;
   width: 100%;
   word-break: break-all;
   color: white;
 
+  ${mq.mobileWide`
+    ${scale(1.2)};
+    transform: scale(1);
+    transition: transform 0.2s linear;
+  `}
+
+  ${mq.tablet`
+    ${scale(1.5)};
+    transform: scale(1);
+    transition: transform 0.2s linear;
+  `}
+
   ${mq.desktop`
+   ${scale(1.75)};
     transform: scale(1);
     transition: transform 0.2s linear;
   `}
@@ -72,6 +88,7 @@ const GearSectionTitle = styled.h1`
 
 const GearSection = styled.div`
   position: relative;
+  margin: 0 0.25rem 0 2.5rem;
 
   & + & {
     margin-top: 8vh;
@@ -111,6 +128,10 @@ const GearSection = styled.div`
   `}
 `;
 
+const StyledImg = styled(Img)`
+  border-radius: 4px;
+`;
+
 export const query = graphql`
   query GearListingPageQuery {
     site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
@@ -128,6 +149,15 @@ export const query = graphql`
           gearItemTitle
           gearItemCount
           gearSpecialRequest
+          gearItemImage {
+            asset {
+              fixed(width: 300) {
+                ...GatsbySanityImageFixed
+              }
+              url
+              _id
+            }
+          }
         }
       }
     }
@@ -154,6 +184,12 @@ const GearListingPage = ({ data, errors }) => {
     throw new Error('Missing "Site settings". Open the studio at http://localhost:3333 and add "Site settings" data');
   }
 
+  const RenderImagePreview = ({ imageSource }) => (
+    // Each item requires a unique key. Also we are controling the opactiy prop from
+    // styled components in the first few lines of the document
+    <StyledImg fixed={imageSource && imageSource} />
+  );
+
   return (
     <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
@@ -167,14 +203,49 @@ const GearListingPage = ({ data, errors }) => {
               {sectionTitle}
             </GearSectionTitle>
             <ul>
-              {gearItems.map(({ gearItemTitle, gearSpecialRequest: gearspecialrequest, gearItemCount, _key }) => (
-                <React.Fragment key={_key}>
-                  <li>
-                    <GearItemCount>{gearItemCount || '1'}</GearItemCount> {gearItemTitle}
-                    {gearspecialrequest && <ByRequestIcon />}
-                  </li>
-                </React.Fragment>
-              ))}
+              {gearItems.map(
+                ({ gearItemTitle, gearSpecialRequest: gearspecialrequest, gearItemCount, _key, gearItemImage }) => (
+                  <React.Fragment key={_key}>
+                    {gearItemImage && gearItemImage ? (
+                      <Tooltip
+                        trigger="mouseenter"
+                        followCursor
+                        unmountHTMLWhenHide
+                        inertia
+                        distance="2"
+                        animation="fade"
+                        size="small"
+                        theme="custom"
+                        html={<RenderImagePreview imageSource={gearItemImage.asset.fixed} />}
+                      >
+                        <li>
+                          <GearItemCount>{gearItemCount || '1'}</GearItemCount>
+                          {gearItemTitle}
+                        </li>
+                      </Tooltip>
+                    ) : (
+                      <li>
+                        <GearItemCount>{gearItemCount || '1'}</GearItemCount>
+
+                        {gearItemTitle}
+
+                        {gearspecialrequest && (
+                          <Tooltip
+                            trigger="mouseenter"
+                            unmountHTMLWhenHide
+                            inertia
+                            distance="2"
+                            animation="fade"
+                            html="By special request only"
+                          >
+                            <ByRequestIcon />
+                          </Tooltip>
+                        )}
+                      </li>
+                    )}
+                  </React.Fragment>
+                )
+              )}
             </ul>
           </GearSection>
         ))}
@@ -187,11 +258,14 @@ GearListingPage.propTypes = {
   data: PropTypes.any.isRequired,
   errors: PropTypes.any,
   site: PropTypes.any,
+  // eslint-disable-next-line react/no-unused-prop-types
+  imageSource: PropTypes.string,
 };
 
 GearListingPage.defaultProps = {
   errors: null,
   site: null,
+  imageSource: ' []',
 };
 
 export default GearListingPage;

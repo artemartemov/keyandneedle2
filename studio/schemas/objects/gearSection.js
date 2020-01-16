@@ -11,8 +11,8 @@ export default {
       type: 'array',
       name: 'gearItems',
       title: 'Gear Items',
-      of: [{type: 'gearItem'}],
-      options: {editModal: 'popover'}
+      of: [{type: 'gearItem'}]
+      // options: {editModal: 'popover'}
     }
   ],
 

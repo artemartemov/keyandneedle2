@@ -1,42 +1,43 @@
 :root {
 	/* Brand Colors */
-	--brand-darkest: #19162A;
+	--brand-darkest: rgb(30, 23, 46);
 	--brand-lightest: #fff;
 	--gray-base: #b2b2be;
 	--brand-primary: #893fc4;
 	--brand-primary--inverted: #ebe0f7;
 	--brand-secondary: #f43;
 	--brand-secondary--inverted: #fff;
+	--brand-darkest--inverted: color(var(--brand-darkest) contrast(90%));
 
 	/* Forms */
-	--default-button-color: #893fc4;
+	--default-button-color: var(--brand-darkest);
 	--default-button-color--inverted: #ebe0f7;
 	--default-button-color--hover: #ac55f5;
 	--default-button-color--active: #ac55f5;
 
-	--input-bg: #2f203c;
-	--input-color: #ece4f5;
-	--input-border-color: #893fc4;
+	--input-bg: #ffffff;
+	--input-color: #19162A;
+	--input-border-color: color(var(--component-bg) contrast(1%) a(40%));
 
 	/* Colors */
-	--body-bg: #19162A;
-	--body-text: #bbbbbb;
-	--component-bg: #19162A;
-	--component-text-color: #9ca8bd;
+	--body-bg: #ebebeb;
+	--body-text: #19162A;
+	--component-bg: #fafafa;
+	--component-text-color: #19162A;
 	--preview-placeholder-color: color(var(--component-bg) contrast(80%) alpha(10%));
-	--component-border-color: color(var(--component-bg) contrast(80%) a(20%));
 	--backdrop-color: color(var(--brand-darkest) a(12%));
 
-	--main-navigation-color: #893fc4;
+	--main-navigation-color: var(--brand-darkest);
 
 	--main-navigation-color--inverted: color(var(--main-navigation-color) contrast(80%));
 
-	--dialog-header-color: var(--brand-primary);
-	--dialog-header-color--inverted: var(--brand-primary--inverted);
-	--header-height: 3rem;
+
+	--dialog-header-color: #fff;
+	--dialog-header-color--inverted: var(--brand-darkest);
+	--header-height: 2rem;
 	--checkerboard-color: color(var(--component-text-color) a(5%));
 	--selectable-item-base: var(--brand-primary);
-	--brand-darkest--inverted: color(var(--brand-darkest) contrast(80%));
+
 
 	/* Hairline */
 	--hairline-color: color(var(--component-bg) contrast(80%) a(10%));
@@ -45,6 +46,10 @@
 	--default-button-primary-color--inverted: #fff;
 	--default-button-danger-color--inverted: #fff;
 	--default-button-success-color--inverted: #fff;
+
+	/* Override */
+	--selectable-item-base:  var(--brand-darkest);
+	--default-button-primary-color: var(--brand-darkest);
 
 	/* Gray Colors */
 	--black: #19162A;
@@ -68,9 +73,7 @@
 	--list-border-color: var(--hairline-color);
 	--list-border: 1px solid var(--list-border-color);
 
-	/* Override */
-	--selectable-item-base: #893fc4;
-	--default-button-primary-color: #893fc4;
+
 
 	/* Code */
 	--code-color: var(--brand-primary);

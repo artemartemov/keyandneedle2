@@ -25,15 +25,25 @@ export default {
       options: {
         layout: 'checkbox'
       }
+    },
+    {
+      name: 'gearItemImage',
+      type: 'figure',
+      title: 'Gear Item Image',
+      description: 'Optional, but will show an example to users on the website'
     }
   ],
   preview: {
     select: {
-      title: 'gearItemTitle'
+      title: 'gearItemTitle',
+      subtitle: 'gearItemCount',
+      media: 'gearItemImage'
     },
-    prepare ({title = 'No title'}) {
+    prepare ({title = 'No title', media, subtitle = 'no inventory count'}) {
       return {
-        title
+        title,
+        subtitle,
+        media
       }
     }
   }

@@ -26,7 +26,7 @@ const GearListingWrapper = styled.div`
   max-width: 500px;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0 2rem;
 `;
 
 const GearSectionCounter = styled.span`

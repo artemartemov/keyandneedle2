@@ -1,16 +1,26 @@
 import S from '@sanity/desk-tool/structure-builder'
-import MdSettings from 'react-icons/lib/md/settings'
-import MdPerson from 'react-icons/lib/md/person'
+
+import {Home, Mic, Mail, Settings, Users} from 'react-feather'
 
 const hiddenDocTypes = listItem =>
-  !['indexPage', 'category', 'post', 'siteSettings', 'gearSection', 'gearPage', 'contactPage'].includes(listItem.getId())
+  !['indexPage', 'category', 'post', 'siteSettings', 'gearSection', 'gearPage', 'contactPage', 'employee'].includes(listItem.getId())
 
 export default () =>
   S.list()
     .title('Content')
     .items([
       S.listItem()
-        .title('Home Page')
+        .title('Settings & SEO')
+        .icon(Settings)
+        .child(
+          S.editor()
+            .id('siteSettings')
+            .schemaType('siteSettings')
+            .documentId('siteSettings')
+        ),
+      S.listItem()
+        .title('Homepage')
+        .icon(Home)
         .child(
           S.editor()
             .id('indexPage')
@@ -18,7 +28,8 @@ export default () =>
             .documentId('indexPage')
         ),
       S.listItem()
-        .title('Gear Listing Page')
+        .title('Gear Listing')
+        .icon(Mic)
         .child(
           S.editor()
             .id('gearPage')
@@ -26,7 +37,8 @@ export default () =>
             .documentId('gearPage')
         ),
       S.listItem()
-        .title('Contact')
+        .title('Contact Info')
+        .icon(Mail)
         .child(
           S.editor()
             .id('contactPage')
@@ -34,13 +46,13 @@ export default () =>
             .documentId('contactPage')
         ),
       S.listItem()
-        .title('Settings')
-        .icon(MdSettings)
+        .title('Employees')
+        .icon(Users)
         .child(
           S.editor()
-            .id('siteSettings')
-            .schemaType('siteSettings')
-            .documentId('siteSettings')
+            .id('employeeListing')
+            .schemaType('employeeListing')
+            .documentId('employeeListing')
         ),
       // S.listItem()
       //   .title('Blog posts')

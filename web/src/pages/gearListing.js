@@ -11,7 +11,6 @@ import { Tooltip } from 'react-tippy';
 // import { GraphQLErrorList, SEO, Layout, Header, Icon } from 'components';
 
 import GraphQLErrorList from 'components/graphql-error-list';
-import SEO from 'components/seo';
 import Layout from 'components/layout';
 import Header from 'components/header';
 import Icon from 'components/icons/';
@@ -192,7 +191,6 @@ const GearListingPage = ({ data, errors }) => {
 
   return (
     <Layout>
-      <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Header />
 
       <GearListingWrapper>

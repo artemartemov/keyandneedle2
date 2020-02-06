@@ -6,7 +6,7 @@ import SchemaOrg from 'components/SchemaOrg';
 // import { imageUrlFor } from '../lib/image-url';
 // import { buildImageObj } from '../lib/helpers';
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, lang, meta, keywords }) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -26,7 +26,7 @@ function SEO({ description, lang, meta, keywords, title }) {
               defer={false}
               htmlAttributes={{ lang }}
               title={siteTitle}
-              titleTemplate={title === siteTitle ? '%s' : `%s | ${siteTitle}`}
+              titleTemplate={data.site.title === siteTitle ? '%s' : `%s | ${siteTitle}`}
               link={[{ rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#010203' }]}
               meta={[
                 {
@@ -111,7 +111,6 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.array,
   keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
 };
 
 export default SEO;

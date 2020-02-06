@@ -15,7 +15,6 @@ import styled from 'styled-components';
 // } from 'components';
 
 import GraphQLErrorList from 'components/graphql-error-list';
-import SEO from 'components/seo';
 import Layout from 'components/layout';
 import BgImageSlider from 'components/BgImageSlider';
 import PortableText from 'components/portableText';
@@ -122,7 +121,6 @@ const IndexPage = ({ data, errors }) => {
 
   return (
     <Layout>
-      <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Header />
       <BgImageSlider imageSlides={imageBgNodes} />
       <MainTextWrapper>

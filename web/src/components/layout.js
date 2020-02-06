@@ -2,6 +2,8 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 
+import SEO from 'components/seo';
+
 import { mq } from 'utils';
 
 const GlobalStyle = createGlobalStyle`
@@ -28,6 +30,7 @@ const LayoutWrapper = styled.div`
 
 const Layout = ({ children }) => (
   <>
+    <SEO />
     <GlobalStyle />
     <LayoutWrapper>{children}</LayoutWrapper>
   </>

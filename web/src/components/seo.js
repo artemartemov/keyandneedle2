@@ -21,58 +21,56 @@ function SEO({ description, lang, meta, keywords }) {
         //     : '';
 
         return (
-          <>
-            <Helmet
-              defer={false}
-              htmlAttributes={{ lang }}
-              title={siteTitle}
-              titleTemplate={data.site.title === siteTitle ? '%s' : `%s | ${siteTitle}`}
-              link={[{ rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#010203' }]}
-              meta={[
-                {
-                  name: 'description',
-                  content: metaDescription,
-                },
-                {
-                  property: 'og:title',
-                  content: siteTitle,
-                },
-                {
-                  property: 'og:description',
-                  content: metaDescription,
-                },
-                {
-                  property: 'og:type',
-                  content: 'website',
-                },
-                // {
-                //   property: 'og:image',
-                //   content: metaImage,
-                // },
-                {
-                  name: 'twitter:card',
-                  content: 'summary',
-                },
-                {
-                  name: 'twitter:title',
-                  content: siteTitle,
-                },
-                {
-                  name: 'twitter:description',
-                  content: metaDescription,
-                },
-              ]
-                .concat(
-                  keywords && keywords.length > 0
-                    ? {
-                        name: 'keywords',
-                        content: keywords.join(', '),
-                      }
-                    : []
-                )
-                .concat(meta)}
-            />
-
+          <Helmet
+            defer={false}
+            htmlAttributes={{ lang }}
+            title={siteTitle}
+            titleTemplate={data.site.title === siteTitle ? '%s' : `%s | ${siteTitle}`}
+            link={[{ rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#010203' }]}
+            meta={[
+              {
+                name: 'description',
+                content: metaDescription,
+              },
+              {
+                property: 'og:title',
+                content: siteTitle,
+              },
+              {
+                property: 'og:description',
+                content: metaDescription,
+              },
+              {
+                property: 'og:type',
+                content: 'website',
+              },
+              // {
+              //   property: 'og:image',
+              //   content: metaImage,
+              // },
+              {
+                name: 'twitter:card',
+                content: 'summary',
+              },
+              {
+                name: 'twitter:title',
+                content: siteTitle,
+              },
+              {
+                name: 'twitter:description',
+                content: metaDescription,
+              },
+            ]
+              .concat(
+                keywords && keywords.length > 0
+                  ? {
+                      name: 'keywords',
+                      content: keywords.join(', '),
+                    }
+                  : []
+              )
+              .concat(meta)}
+          >
             <SchemaOrg
               url={data.site.siteUrl}
               title={siteTitle}
@@ -92,7 +90,7 @@ function SEO({ description, lang, meta, keywords }) {
               lat={data.contact.location.lat}
               lng={data.contact.location.lng}
             />
-          </>
+          </Helmet>
         );
       }}
     />

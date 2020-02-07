@@ -58,7 +58,7 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <Logo to="/" style={logoAnimations}>
-        <LogoIcon width="2rem" height="100%" fill={colors.beige.base} />
+        <LogoIcon alt="Key+Needle Logo" width="2rem" height="100%" fill={colors.beige.base} />
       </Logo>
       <Navigation>
         <ul>

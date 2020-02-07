@@ -6,17 +6,16 @@
 	--brand-primary: #893fc4;
 	--brand-primary--inverted: #ebe0f7;
 	--brand-secondary: #f43;
-	--brand-secondary--inverted: #fff;
+	--brand-secondary--inverted: var(--brand-lightest);
 	--brand-darkest--inverted: color(var(--brand-darkest) contrast(90%));
 
 	/* Forms */
 	--default-button-color: var(--brand-darkest);
-	--default-button-color--inverted: #ebe0f7;
+	--default-button-color--inverted: var(--brand-primary--inverted);
 	--default-button-color--hover: #ac55f5;
 	--default-button-color--active: #ac55f5;
 
 	--input-bg: #ffffff;
-	--input-color: #19162A;
 	--input-border-color: color(var(--component-bg) contrast(1%) a(40%));
 
 	/* Colors */
@@ -26,12 +25,10 @@
 	--component-text-color: #19162A;
 	--preview-placeholder-color: color(var(--component-bg) contrast(80%) alpha(10%));
 	--backdrop-color: color(var(--brand-darkest) a(12%));
-
 	--main-navigation-color: var(--brand-darkest);
-
 	--main-navigation-color--inverted: color(var(--main-navigation-color) contrast(80%));
 
-
+	/* Headers */
 	--dialog-header-color: #fff;
 	--dialog-header-color--inverted: var(--brand-darkest);
 	--header-height: 2rem;
@@ -43,45 +40,11 @@
 	--hairline-color: color(var(--component-bg) contrast(80%) a(10%));
 
 	/* Buttons */
-	--default-button-primary-color--inverted: #fff;
-	--default-button-danger-color--inverted: #fff;
-	--default-button-success-color--inverted: #fff;
+	--default-button-primary-color--inverted: var(--brand-lightest);
+	--default-button-danger-color--inverted: var(--brand-lightest);
+	--default-button-success-color--inverted: var(--brand-lightest);
 
 	/* Override */
 	--selectable-item-base:  var(--brand-darkest);
 	--default-button-primary-color: var(--brand-darkest);
-
-	/* Gray Colors */
-	--black: #19162A;
-	--white: color(#353d4f a(20%));
-	--gray-darkest: color(var(--gray-base) lightness(- 5%));
-	--gray-darkest--transparent: color(var(--gray-base) lightness(- 5%) a(95%));
-	--gray-darker: color(var(--gray-base) lightness(+ 2%));
-	--gray-darker-transparent: color(var(--gray-base) lightness(+ 2%) a(88%));
-	--gray-dark: color(var(--gray-base));
-	--gray-dark--transparent: color(var(--gray-base) a(70%));
-	--gray: color(var(--gray-base));
-	--gray--transparent: color(var(--gray-base) a(60%));
-	--gray-light: color(var(--component-bg) lightness(+ 10%));
-	--gray-light--transparent: color(var(--component-bg) lightness(+ 10%) a(50%));
-	--gray-lighter: color(var(--component-bg) lightness(+ 15%));
-	--gray-lighter--transparent: color(var(--component-bg) lightness(+ 15%) a(25%));
-	--gray-lightest: color(var(--component-bg) lightness(+ 30%));
-	--gray-lightest--transparent: color(var(--component-bg) lightness(+ 30%) a(50%));
-
-	/* List */
-	--list-border-color: var(--hairline-color);
-	--list-border: 1px solid var(--list-border-color);
-
-
-
-	/* Code */
-	--code-color: var(--brand-primary);
-	--code-bg: var(--gray-light);
-	--kbd-color: #fff;
-	--kbd-bg: #333;
-	--pre-bg: var(--gray-light);
-	--pre-color: var(--gray-dark);
-	--pre-border-color: #ccc;
-	--pre-scrollable-max-height: 20em;
   }

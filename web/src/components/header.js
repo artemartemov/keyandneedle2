@@ -41,6 +41,11 @@ const Navigation = styled.nav`
   }
 `;
 
+const Hidden = styled.p`
+  visibility: hidden;
+  display: none;
+`;
+
 const Header = () => {
   const logoAnimations = useSpring({
     from: {
@@ -59,6 +64,7 @@ const Header = () => {
     <HeaderWrapper>
       <Logo to="/" style={logoAnimations}>
         <LogoIcon alt="Key+Needle Logo" width="2rem" height="100%" fill={colors.beige.base} />
+        <Hidden>Key+Needle Logo</Hidden>
       </Logo>
       <Navigation>
         <ul>

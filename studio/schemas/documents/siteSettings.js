@@ -16,6 +16,12 @@ export default {
       description: 'Describe your blog for search engines and social media.'
     },
     {
+      name: 'siteImage',
+      type: 'figure',
+      title: 'SEO Image',
+      description: 'Image that will be used for SEO and metadata'
+    },
+    {
       name: 'siteUrl',
       type: 'url',
       title: 'Site URL',

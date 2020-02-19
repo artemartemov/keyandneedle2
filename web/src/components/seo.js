@@ -8,9 +8,9 @@ function SEO({ description, lang, meta, keywords }) {
     <StaticQuery
       query={detailsQuery}
       render={data => {
-        const metaDescription = description || (data.site && data.site.description) || '';
-        const siteTitle = (data.site && data.site.title) || '';
-        const siteData = data && data.site;
+        const metaDescription = description || (data.siteSettings && data.siteSettings.description) || '';
+        const siteTitle = (data.siteSettings && data.siteSettings.title) || '';
+        const siteData = data && data.siteSettings;
         const contactData = data && data.contact;
 
         const schema = [
@@ -95,6 +95,11 @@ function SEO({ description, lang, meta, keywords }) {
             '@id': siteData.canonicalUrl,
             name: siteData.title,
             url: siteData.siteUrl,
+            dateModified: data.site.buildTime,
+            image: {
+              '@type': 'ImageObject',
+              url: siteData.siteImage.asset.url,
+            },
           },
           {
             '@context': 'https://schema.org',
@@ -119,12 +124,16 @@ function SEO({ description, lang, meta, keywords }) {
             defer={false}
             htmlAttributes={{ lang }}
             title={siteTitle}
-            titleTemplate={data.site.title === siteTitle ? '%s' : `%s | ${siteTitle}`}
+            titleTemplate={data.siteSettings.title === siteTitle ? '%s' : `%s | ${siteTitle}`}
             link={[{ rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#010203' }]}
             meta={[
               {
                 name: 'description',
                 content: metaDescription,
+              },
+              {
+                name: 'image',
+                content: siteData.siteImage.asset.url,
               },
               {
                 property: 'og:title',
@@ -139,6 +148,22 @@ function SEO({ description, lang, meta, keywords }) {
                 content: 'website',
               },
               {
+                property: 'og:url',
+                content: siteData.siteUrl,
+              },
+              {
+                property: 'og:image',
+                content: siteData.siteImage.asset.url,
+              },
+              {
+                property: 'og:image:alt',
+                content: siteData.siteImage.alt,
+              },
+              {
+                property: 'og:image:type',
+                content: 'image/jpeg',
+              },
+              {
                 name: 'twitter:card',
                 content: 'summary',
               },
@@ -149,6 +174,10 @@ function SEO({ description, lang, meta, keywords }) {
               {
                 name: 'twitter:description',
                 content: metaDescription,
+              },
+              {
+                name: 'twitter:image',
+                content: siteData.siteImage.asset.url,
               },
             ]
               .concat(
@@ -187,7 +216,10 @@ export default SEO;
 
 const detailsQuery = graphql`
   query DefaultSEOQuery {
-    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+    site {
+      buildTime
+    }
+    siteSettings: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
       title
       description
       keywords
@@ -200,6 +232,12 @@ const detailsQuery = graphql`
       cityAddress
       stateAddress
       zipAddress
+      siteImage {
+        alt
+        asset {
+          url
+        }
+      }
     }
     contact: sanityContactPage(_id: { regex: "/(drafts.|)contactPage/" }) {
       location {

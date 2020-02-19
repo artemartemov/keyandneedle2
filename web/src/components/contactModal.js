@@ -83,7 +83,7 @@ const ContactModal = ({ onClose, isModalOpen }) => {
   const data = useStaticQuery(
     graphql`
       query LocationData {
-        sanityContactPage(_id: { eq: "contactPage" }) {
+        sanityContactPage(_id: { regex: "/(drafts.|)contactPage/" }) {
           location {
             lat
             lng

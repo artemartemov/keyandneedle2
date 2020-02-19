@@ -87,6 +87,7 @@ export const query = graphql`
       _rawSubhead
       buttonText
       bgImages {
+        alt
         asset {
           fluid(maxWidth: 1800) {
             ...GatsbySanityImageFluid

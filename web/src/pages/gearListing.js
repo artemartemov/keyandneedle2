@@ -176,9 +176,6 @@ const GearListingPage = ({ data, errors }) => {
 
   const gearData = (data && data.gearListing.gearPageSection) || '';
 
-  // console.log(gearData);
-  //   const gearListingPage = data && data.gearListing;
-
   if (!site) {
     throw new Error('Missing "Site settings". Open the studio at http://localhost:3333 and add "Site settings" data');
   }

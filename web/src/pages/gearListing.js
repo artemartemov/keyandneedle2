@@ -148,7 +148,7 @@ export const query = graphql`
           gearItemTitle
           gearItemCount
           gearSpecialRequest
-          gearItemImage {
+          gearItemComponents {
             asset {
               fixed(width: 300) {
                 ...GatsbySanityImageFixed
@@ -199,47 +199,68 @@ const GearListingPage = ({ data, errors }) => {
             </GearSectionTitle>
             <ul>
               {gearItems.map(
-                ({ gearItemTitle, gearSpecialRequest: gearspecialrequest, gearItemCount, _key, gearItemImage }) => (
-                  <React.Fragment key={_key}>
-                    {gearItemImage && gearItemImage ? (
-                      <Tooltip
-                        trigger="mouseenter"
-                        followCursor
-                        unmountHTMLWhenHide
-                        inertia
-                        distance="2"
-                        animation="fade"
-                        size="small"
-                        theme="custom"
-                        html={<RenderImagePreview imageSource={gearItemImage.asset.fixed} />}
-                      >
+                ({
+                  gearItemTitle,
+                  gearSpecialRequest: gearspecialrequest,
+                  gearItemCount,
+                  _key,
+                  gearItemComponents,
+                }) => {
+                  const myImageItem = gearItemComponents.map(
+                    gearItemImage => gearItemImage && gearItemImage.asset && gearItemImage.asset.fixed
+                  );
+                  return (
+                    <React.Fragment key={_key}>
+                      {myImageItem && !!myImageItem.length ? (
+                        <Tooltip
+                          trigger="mouseenter"
+                          followCursor
+                          unmountHTMLWhenHide
+                          inertia
+                          distance="2"
+                          animation="fade"
+                          size="small"
+                          theme="custom"
+                          html={<RenderImagePreview imageSource={myImageItem} />}
+                        >
+                          <li>
+                            <GearItemCount>{gearItemCount || '1'}</GearItemCount>
+                            {gearItemTitle}
+                            {gearspecialrequest && (
+                              <Tooltip
+                                trigger="mouseenter"
+                                unmountHTMLWhenHide
+                                inertia
+                                distance="2"
+                                animation="fade"
+                                html="By special request only"
+                              >
+                                <ByRequestIcon />
+                              </Tooltip>
+                            )}
+                          </li>
+                        </Tooltip>
+                      ) : (
                         <li>
                           <GearItemCount>{gearItemCount || '1'}</GearItemCount>
                           {gearItemTitle}
+                          {gearspecialrequest && (
+                            <Tooltip
+                              trigger="mouseenter"
+                              unmountHTMLWhenHide
+                              inertia
+                              distance="2"
+                              animation="fade"
+                              html="By special request only"
+                            >
+                              <ByRequestIcon />
+                            </Tooltip>
+                          )}
                         </li>
-                      </Tooltip>
-                    ) : (
-                      <li>
-                        <GearItemCount>{gearItemCount || '1'}</GearItemCount>
-
-                        {gearItemTitle}
-
-                        {gearspecialrequest && (
-                          <Tooltip
-                            trigger="mouseenter"
-                            unmountHTMLWhenHide
-                            inertia
-                            distance="2"
-                            animation="fade"
-                            html="By special request only"
-                          >
-                            <ByRequestIcon />
-                          </Tooltip>
-                        )}
-                      </li>
-                    )}
-                  </React.Fragment>
-                )
+                      )}
+                    </React.Fragment>
+                  );
+                }
               )}
             </ul>
           </GearSection>

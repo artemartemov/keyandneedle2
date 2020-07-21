@@ -38,7 +38,8 @@ export default {
       title: 'Gear Item Modules',
       of: [
         {type: 'figure'}
-      ]
+      ],
+      validation: Rule => Rule.max(1).error('Only one image per gear item is allowed!')
     }
   ],
   preview: {

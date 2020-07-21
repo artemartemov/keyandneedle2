@@ -26,11 +26,19 @@ export default {
         layout: 'checkbox'
       }
     },
+    // {
+    //   name: 'gearItemImage',
+    //   type: 'figure',
+    //   title: 'Gear Item Image',
+    //   description: 'Optional, but will show an example to users on the website'
+    // },
     {
-      name: 'gearItemImage',
-      type: 'figure',
-      title: 'Gear Item Image',
-      description: 'Optional, but will show an example to users on the website'
+      name: 'gearItemComponents',
+      type: 'array',
+      title: 'Gear Item Modules',
+      of: [
+        {type: 'figure'}
+      ]
     }
   ],
   preview: {

@@ -106,7 +106,7 @@ class BgImageSlider extends PureComponent {
         // Each item requires a unique key. Also we are controling the opactiy prop from
         // styled components in the first few lines of the document
         <SlideContainer isActive={isActive} key={image.asset._id}>
-          <Img fluid={image.asset.fluid} alt={image.alt} />
+          <Img loading="eager" fadeIn={false} fluid={image.asset.fluid} alt={image.alt} />
         </SlideContainer>
       );
     });

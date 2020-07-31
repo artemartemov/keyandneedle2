@@ -41,6 +41,7 @@ module.exports = {
         pathToConfigModule: `./src/utils/typography.js`
       }
     },
+    "gatsby-plugin-preload-fonts",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     "gatsby-plugin-styled-components",
@@ -141,6 +142,12 @@ module.exports = {
       resolve: `gatsby-plugin-offline`,
       options: {
         precachePages: [`/gearListing`]
+      }
+    },
+    {
+      resolve: "gatsby-plugin-zopfli",
+      options: {
+        extensions: ["css", "html", "js", "svg"]
       }
     }
   ]

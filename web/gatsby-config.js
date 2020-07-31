@@ -95,7 +95,7 @@ module.exports = {
         lang: `en`,
         orientation: "portrait",
         cache_busting_mode: "none",
-        icon: "icons/icon-48x48.png",
+        icon: "static/icons/favicon.png",
         icons: [
           {
             src: "icons/icon-48x48.png",

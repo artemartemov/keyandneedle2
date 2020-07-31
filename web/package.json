@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "format": "prettier-eslint --write \"**/*.+(js|jsx|md|json)\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "test": "jest",
-    "eslint-check": "eslint --print-config ./src/pages/index.js | eslint-config-prettier-check"
+    "eslint-check": "eslint --print-config ./src/pages/index.js | eslint-config-prettier-check",
+    "preload-fonts": "gatsby-preload-fonts"
   },
   "husky": {
     "hooks": {
@@ -70,11 +71,13 @@
     "gatsby-plugin-manifest": "^2.2.37",
     "gatsby-plugin-offline": "^3.0.32",
     "gatsby-plugin-preact": "^4.0.9",
+    "gatsby-plugin-preload-fonts": "^1.2.19",
     "gatsby-plugin-react-svg": "^2.1.2",
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sharp": "^2.2.12",
     "gatsby-plugin-sitemap": "^2.2.25",
     "gatsby-plugin-typography": "^2.3.2",
+    "gatsby-plugin-zopfli": "^2.0.0",
     "gatsby-transformer-sharp": "^2.2.6",
     "google-map-react": "^1.1.4",
     "gsap": "^2.1.3",

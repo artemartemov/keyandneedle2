@@ -41,6 +41,7 @@ module.exports = {
         pathToConfigModule: `./src/utils/typography.js`
       }
     },
+    "gatsby-plugin-preload-fonts",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     "gatsby-plugin-styled-components",
@@ -93,6 +94,8 @@ module.exports = {
         display: `standalone`,
         lang: `en`,
         orientation: "portrait",
+        cache_busting_mode: "none",
+        icon: "static/icons/favicon.png",
         icons: [
           {
             src: "icons/icon-48x48.png",
@@ -133,6 +136,11 @@ module.exports = {
             src: "icons/icon-512x512.png",
             sizes: "512x512",
             type: "image/png"
+          },
+          {
+            src: "icons/favicon.png",
+            sizes: "1024x1024",
+            type: "image/png"
           }
         ]
       }
@@ -140,7 +148,16 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
-        precachePages: [`/gearListing`]
+        precachePages: [`/gearListing`],
+        workboxConfig: {
+          globPatterns: ["**/icon*"]
+        }
+      }
+    },
+    {
+      resolve: "gatsby-plugin-zopfli",
+      options: {
+        extensions: ["css", "html", "js", "svg"]
       }
     }
   ]

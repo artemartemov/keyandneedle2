@@ -150,7 +150,7 @@ module.exports = {
       options: {
         precachePages: [`/gearListing`],
         workboxConfig: {
-          globPatterns: ["**/icons*"]
+          globPatterns: ["**/icon*"]
         }
       }
     },

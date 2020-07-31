@@ -94,7 +94,19 @@ module.exports = {
         display: `standalone`,
         lang: `en`,
         orientation: "portrait",
+        cache_busting_mode: "none",
         icons: [
+          ,
+          {
+            src: "icons/favicon.png",
+            sizes: "1024x1024",
+            type: "image/png"
+          },
+          {
+            src: "icons/favicon.png",
+            sizes: "1024x1024",
+            type: "image/png"
+          },
           {
             src: "icons/icon-48x48.png",
             sizes: "48x48",
@@ -141,7 +153,10 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
-        precachePages: [`/gearListing`]
+        precachePages: [`/gearListing`],
+        workboxConfig: {
+          globPatterns: ["**/icon-path*"]
+        }
       }
     },
     {

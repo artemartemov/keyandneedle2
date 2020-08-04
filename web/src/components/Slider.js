@@ -49,7 +49,7 @@ const Slider = props => {
     _slides: [lastSlide, firstSlide, secondSlide],
   });
 
-  const { activeSlide, translate, _slides = [], transition } = state;
+  const { activeSlide, translate, _slides, transition } = state;
 
   const autoPlayRef = useRef();
   const transitionRef = useRef();
@@ -104,7 +104,8 @@ const Slider = props => {
   };
 
   const smoothTransition = () => {
-    // let _slides = [];
+    // eslint-disable-next-line no-shadow
+    let _slides = [];
 
     // We're at the last slide.
     // eslint-disable-next-line no-const-assign

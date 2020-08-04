@@ -20,7 +20,7 @@ SliderContent.propTypes = {
   children: PropTypes.node.isRequired,
   transition: PropTypes.number.isRequired,
   translate: PropTypes.number.isRequired,
-  width: PropTypes.any.number.isRequired,
+  width: PropTypes.number.isRequired,
 };
 
 export default SliderContent;

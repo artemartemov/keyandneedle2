@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { isBrowser } from 'utils';
 import SliderContent from './SliderContent';
 import Slide from './Slide';
 
@@ -29,7 +30,7 @@ const StyledSlider = styled.div`
   }
 `;
 
-const getWidth = () => window.innerWidth;
+const getWidth = () => isBrowser() && window.innerWidth;
 
 /**
  * @function Slider

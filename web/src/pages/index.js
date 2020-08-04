@@ -99,19 +99,6 @@ export const query = graphql`
         }
       }
     }
-
-    # backgrounds: sanityIndexPage(_id: { regex: "/(drafts.|)indexPage/" }) {
-    #   bgImages {
-    #     alt
-    #     asset {
-    #       fluid(maxWidth: 1800) {
-    #         ...GatsbySanityImageFluid
-    #       }
-    #       url
-    #       assetId
-    #     }
-    #   }
-    # }
   }
 `;
 

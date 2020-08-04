@@ -21,7 +21,7 @@ Slide.propTypes = {
 };
 
 Slide.defaultProps = {
-  width: 'auto',
+  width: '800',
 };
 
 export default Slide;

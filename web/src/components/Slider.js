@@ -45,10 +45,11 @@ const Slider = props => {
     activeSlide: 0,
     translate: getWidth(),
     transition: 0.45,
+    imageWidth: 800,
     _slides: [lastSlide, firstSlide, secondSlide],
   });
 
-  const { activeSlide, translate, _slides, transition } = state;
+  const { activeSlide, translate, _slides, transition, imageWidth } = state;
 
   const autoPlayRef = useRef();
   const transitionRef = useRef();
@@ -99,7 +100,7 @@ const Slider = props => {
   }, [transition]);
 
   const handleResize = () => {
-    setState({ ...state, translate: getWidth(), transition: 0 });
+    setState({ ...state, translate: getWidth(), transition: 0, imageWidth: getWidth() });
   };
 
   const smoothTransition = () => {
@@ -118,6 +119,7 @@ const Slider = props => {
       _slides,
       transition: 0,
       translate: getWidth(),
+      imageWidth: getWidth(),
     });
   };
 
@@ -136,7 +138,7 @@ const Slider = props => {
             width={getWidth()}
             key={_slide.asset.assetId}
             content={imageUrlFor(buildImageObj(_slide))
-              .width(getWidth())
+              .width(imageWidth)
               .maxWidth(1800)
               .quality(100)
               .fit('scale')

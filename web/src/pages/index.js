@@ -16,11 +16,12 @@ import styled from 'styled-components';
 
 import GraphQLErrorList from 'components/graphql-error-list';
 import Layout from 'components/layout';
-import BgImageSlider from 'components/BgImageSlider';
 import PortableText from 'components/portableText';
 import Header from 'components/header';
 import useToggle from 'components/UseToggle';
 import BookingModal from 'components/bookingModal';
+
+import Slider from 'components/Slider';
 
 import { colors, scale } from 'utils';
 
@@ -93,10 +94,24 @@ export const query = graphql`
             ...GatsbySanityImageFluid
           }
           url
+          assetId
           _id
         }
       }
     }
+
+    # backgrounds: sanityIndexPage(_id: { regex: "/(drafts.|)indexPage/" }) {
+    #   bgImages {
+    #     alt
+    #     asset {
+    #       fluid(maxWidth: 1800) {
+    #         ...GatsbySanityImageFluid
+    #       }
+    #       url
+    #       assetId
+    #     }
+    #   }
+    # }
   }
 `;
 
@@ -123,7 +138,7 @@ const IndexPage = ({ data, errors }) => {
   return (
     <Layout>
       <Header />
-      <BgImageSlider imageSlides={imageBgNodes} />
+      <Slider slides={imageBgNodes} autoPlay={7} />
       <MainTextWrapper>
         <h1>{homepage.headlineText}</h1>
         {homepage._rawSubhead && <PortableText blocks={homepage._rawSubhead} />}

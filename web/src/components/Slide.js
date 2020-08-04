@@ -16,8 +16,12 @@ const Slide = ({ content, width }) => (
 );
 
 Slide.propTypes = {
-  content: PropTypes.object.isRequired,
-  width: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  width: PropTypes.any,
+};
+
+Slide.defaultProps = {
+  width: 'auto',
 };
 
 export default Slide;

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { isBrowser } from 'utils';
 import SliderContent from './SliderContent';
 import Slide from './Slide';
-
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 
@@ -108,13 +107,10 @@ const Slider = props => {
     let _slides = [];
 
     // We're at the last slide.
-    // eslint-disable-next-line no-const-assign
     if (activeSlide === slides.length - 1) _slides = [slides[slides.length - 2], lastSlide, firstSlide];
     // We're back at the first slide. Just reset to how it was on initial render
-    // eslint-disable-next-line no-const-assign
     else if (activeSlide === 0) _slides = [lastSlide, firstSlide, secondSlide];
     // Create an array of the previous last slide, and the next two slides that follow it.
-    // eslint-disable-next-line no-const-assign
     else _slides = slides.slice(activeSlide - 1, activeSlide + 2);
 
     setState({
@@ -154,7 +150,7 @@ const Slider = props => {
 
 Slider.propTypes = {
   slides: PropTypes.array,
-  autoPlay: PropTypes.bool,
+  autoPlay: PropTypes.number,
 };
 
 Slider.defaultProps = {

@@ -98,14 +98,14 @@ class BgImageSlider extends PureComponent {
     const { currentIndex } = this.state;
     const { imageSlides } = this.props;
 
-    const slides = imageSlides.map((image, i, alt) => {
+    const slides = imageSlides.map((image, i) => {
       // If the current slide matches the active slide, set an isActive prop
       const isActive = currentIndex === i;
 
       return (
         // Each item requires a unique key. Also we are controling the opactiy prop from
         // styled components in the first few lines of the document
-        <SlideContainer isActive={isActive} key={image.asset._id}>
+        <SlideContainer isActive={isActive} key={image.asset.assetId}>
           <Img loading="eager" fadeIn={false} fluid={image.asset.fluid} alt={image.alt} />
         </SlideContainer>
       );

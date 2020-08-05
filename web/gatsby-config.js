@@ -23,7 +23,7 @@ module.exports = {
     siteUrl
   },
   plugins: [
-    "gatsby-plugin-preact",
+    // "gatsby-plugin-preact",
     "gatsby-plugin-postcss",
     "gatsby-plugin-react-helmet",
     {

@@ -16,11 +16,12 @@ import styled from 'styled-components';
 
 import GraphQLErrorList from 'components/graphql-error-list';
 import Layout from 'components/layout';
-import BgImageSlider from 'components/BgImageSlider';
 import PortableText from 'components/portableText';
 import Header from 'components/header';
 import useToggle from 'components/UseToggle';
 import BookingModal from 'components/bookingModal';
+
+import BgImageSlider from 'components/BgImageSlider';
 
 import { colors, scale } from 'utils';
 
@@ -93,6 +94,7 @@ export const query = graphql`
             ...GatsbySanityImageFluid
           }
           url
+          assetId
           _id
         }
       }

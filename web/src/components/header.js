@@ -8,11 +8,10 @@ import ContactModal from 'components/contactModal';
 import LogoIcon from './icons/logo.svg';
 
 const HeaderWrapper = styled.header`
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   display: inline-flex;
   align-items: center;
   width: 100%;
-  padding: 2rem 4%;
+  padding: 2rem 1rem;
 `;
 
 const Logo = styled(animated(Link))`

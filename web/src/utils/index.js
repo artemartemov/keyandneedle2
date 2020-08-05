@@ -4,3 +4,4 @@ export { default as breakpoints } from './breakpoints';
 export { default as shadows } from './shadows';
 export { scale } from './typography';
 export { rhythm } from './typography';
+export { isBrowser } from './isBrowser';

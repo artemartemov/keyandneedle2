@@ -9,6 +9,10 @@ import { mq } from 'utils';
 const GlobalStyle = createGlobalStyle`
   & body {
     background: #010203;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   & a {
@@ -24,9 +28,6 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const LayoutWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  max-width: 100%;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   /* background: red; */
 `;

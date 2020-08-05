@@ -41,22 +41,11 @@ const Navigation = styled.nav`
 `;
 
 const Header = () => {
-  const logoAnimations = useSpring({
-    from: {
-      opacity: 0,
-      top: '-10rem',
-      left: '32px',
-    },
-    opacity: 1,
-    left: '32px',
-    top: '2rem',
-  });
-
   const [openContactModal, toggleContactModal] = useToggle(false);
 
   return (
     <HeaderWrapper>
-      <Logo to="/" style={logoAnimations} aria-label="homepage">
+      <Logo to="/" aria-label="homepage">
         <LogoIcon width="2rem" height="100%" fill={colors.beige.base} />
       </Logo>
       <Navigation>

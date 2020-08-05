@@ -45,10 +45,8 @@ const Header = () => {
     from: {
       opacity: 0,
       top: '-10rem',
-      left: '32px',
     },
     opacity: 1,
-    left: '32px',
     top: '2rem',
   });
 

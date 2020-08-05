@@ -56,7 +56,7 @@ const Header = () => {
 
   return (
     <HeaderWrapper>
-      <Logo to="/" style={logoAnimations}>
+      <Logo to="/" style={logoAnimations} aria-label="homepage">
         <LogoIcon width="2rem" height="100%" fill={colors.beige.base} />
       </Logo>
       <Navigation>

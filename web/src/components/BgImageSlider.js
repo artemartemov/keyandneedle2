@@ -90,9 +90,10 @@ class BgImageSlider extends PureComponent {
     }));
   };
 
-  render({ imageSlides }) {
+  render() {
+    const { imageSlides } = this.props;
+    // const { currentIndex } = this.state;
     requestTimeout(this.goToNextSlide, 7500);
-
     const slides = imageSlides.map(image => (
       // If the current slide matches the active slide, set an isActive prop
 

@@ -41,7 +41,7 @@ module.exports = {
         pathToConfigModule: `./src/utils/typography.js`
       }
     },
-    "gatsby-plugin-preload-fonts",
+    // "gatsby-plugin-preload-fonts",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     "gatsby-plugin-styled-components",

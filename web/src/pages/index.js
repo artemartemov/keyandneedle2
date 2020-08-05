@@ -21,7 +21,7 @@ import Header from 'components/header';
 import useToggle from 'components/UseToggle';
 import BookingModal from 'components/bookingModal';
 
-import Slider from 'components/Slider';
+import BgImageSlider from 'components/BgImageSlider';
 
 import { colors, scale } from 'utils';
 
@@ -125,7 +125,7 @@ const IndexPage = ({ data, errors }) => {
   return (
     <Layout>
       <Header />
-      <Slider slides={imageBgNodes} autoPlay={7} />
+      <BgImageSlider imageSlides={imageBgNodes} />
       <MainTextWrapper>
         <h1>{homepage.headlineText}</h1>
         {homepage._rawSubhead && <PortableText blocks={homepage._rawSubhead} />}

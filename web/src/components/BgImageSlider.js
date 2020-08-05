@@ -90,21 +90,39 @@ class BgImageSlider extends PureComponent {
     }));
   };
 
-  render() {
-    const { imageSlides } = this.props;
-    // const { currentIndex } = this.state;
-    requestTimeout(this.goToNextSlide, 7500);
-    const slides = imageSlides.map(image => (
-      // If the current slide matches the active slide, set an isActive prop
+  // This function renders out the slides. It contains a map of the images
+  // from the array. Then it sets an isActive class based on the current
+  // position. At the end there is a timer that will run goToNextSlide after
+  // 10 seconds
+  // renderSlides = () => {
+  //   const { currentIndex } = this.state;
 
-      // Each item requires a unique key. Also we are controling the opactiy prop from
-      // styled components in the first few lines of the document
-      <SlideContainer key={image.asset.assetId}>
-        <Img loading="eager" fadeIn={false} fluid={image.asset.fluid} alt={image.alt} />
-      </SlideContainer>
-    ));
+  //   // Runs the goToNextSlide function every 10 seconds
+  //   // setTimeout(this.goToNextSlide, 3000);
+
+  //   return slides;
+  // };
+
+  render() {
+    const { currentIndex } = this.state;
+    requestTimeout(this.goToNextSlide, 7500);
+
+    const { imageSlides } = this.props;
+
+    const slides = imageSlides.map((image, i) => {
+      // If the current slide matches the active slide, set an isActive prop
+      const isActive = currentIndex === i;
+
+      return (
+        // Each item requires a unique key. Also we are controling the opactiy prop from
+        // styled components in the first few lines of the document
+        <SlideContainer isActive={isActive} key={image.asset.assetId}>
+          <Img loading="eager" fadeIn={false} fluid={image.asset.fluid} alt={image.alt} />
+        </SlideContainer>
+      );
+    });
     // display the renderSlides function within a Slider styled-component
-    return <Slider>{slides}</Slider>;
+    return <Slider currentIndex={currentIndex}>{slides}</Slider>;
   }
 }
 
